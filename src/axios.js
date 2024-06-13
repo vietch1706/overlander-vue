@@ -6,3 +6,4 @@ axios.defaults.headers.common["Authorization"] =
 axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 axios.defaults.headers.post["Content-Type"] =
   "application/x-www-form-urlencoded";
+axios.defaults.headers.post["Content-Type"] = "multipart/form-data";

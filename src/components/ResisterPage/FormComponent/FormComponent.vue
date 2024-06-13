@@ -6,31 +6,30 @@
       ref="ruleForm"
       label-width="120px"
       label-position="top"
-      class="demo-ruleForm"
     >
       <div class="row row-cols-2 row-cols-lg-2 g-2 g-lg-3">
         <div class="col sp-2">
-          <el-form-item prop="firstName">
+          <el-form-item prop="first_name">
             <template label="scope">
               <label class="overwrite-label-register">
                 <span class="required">*</span> First Name
               </label>
             </template>
             <el-input
-              v-model="data.user.firstName"
+              v-model="data.user.first_name"
               class="overwrite-form-item-register"
             ></el-input>
           </el-form-item>
         </div>
         <div class="col ps-2">
-          <el-form-item prop="lastName">
+          <el-form-item prop="last_name">
             <template label="scope">
               <label class="overwrite-label-register"
                 ><span class="required">*</span> Last Name
               </label>
             </template>
             <el-input
-              v-model="data.user.lastName"
+              v-model="data.user.last_name"
               class="overwrite-form-item-register"
             ></el-input>
           </el-form-item>
@@ -44,13 +43,17 @@
         </template>
         <div class="col-sm-4 pt-2 phone-code-field">
           <el-form-item prop="phoneCode">
-            <el-select v-model="data.user.phoneCode" placeholder="Select">
+            <el-select v-model="data.phoneCode" placeholder="Select">
               <el-option
                 v-for="item in data.country"
                 :key="item.id"
                 :label="item.id"
                 :value="item.phonecode"
               >
+                <span style="float: left">
+                  <img :src="item.flags" alt=""
+                /></span>
+                <span>{{ item.phonecode }}</span>
               </el-option>
             </el-select>
           </el-form-item>
@@ -58,7 +61,8 @@
         <div class="col-sm-8 pt-2">
           <el-form-item prop="phoneNumber">
             <el-input
-              v-model="data.user.phoneNumber"
+              v-model="data.phoneNumber"
+              type="number"
               class="overwrite-form-item-register"
             ></el-input>
           </el-form-item>
@@ -89,7 +93,7 @@
       </div>
       <div class="row row-cols-1">
         <div class="col">
-          <el-form-item prop="region">
+          <el-form-item prop="country">
             <template label="scope">
               <label class="overwrite-label-register">
                 <span class="required">*</span> Country/Region
@@ -165,8 +169,8 @@
         <div class="col sp-2 pt-3">
           <el-form-item prop="gender">
             <el-radio
-              v-model="gender"
-              label="male"
+              v-model="data.user.gender"
+              label="0"
               border
               class="overwrite-radio-item w-100"
               >Male</el-radio
@@ -176,8 +180,8 @@
         <div class="col ps-2 pt-3">
           <el-form-item prop="gender">
             <el-radio
-              v-model="gender"
-              label="female"
+              v-model="data.user.gender"
+              label="1"
               border
               class="overwrite-radio-item w-100"
               >Female</el-radio
@@ -187,7 +191,7 @@
       </div>
       <div class="row row-cols-1">
         <div class="col">
-          <el-form-item prop="interest">
+          <el-form-item prop="interests">
             <template label="scope">
               <label class="overwrite-label-register">
                 Interests <span class="optional">(Optional)</span>
@@ -204,7 +208,8 @@
                 :key="value.id"
                 :value="value.id"
                 :label="value.name"
-              ></el-option>
+              >
+              </el-option>
             </el-select>
           </el-form-item>
         </div>
@@ -232,7 +237,9 @@
       </div>
       <div class="row row-cols-1 pt-4">
         <div class="col sp-2">
-          <el-button>Create Account</el-button>
+          <el-button type="button" @click="submitForm('ruleForm')"
+            >Create Account</el-button
+          >
           <template label="scope">
             <label class="overwrite-label-note">
               By create account, you agree to our
@@ -241,110 +248,21 @@
           </template>
         </div>
       </div>
+      <div class="bottom-container">
+        <div class="bottom-btn">
+          <a :href="url">Terms & Conditions</a><a :href="url">Privacy Policy</a
+          ><a :href="url">Disclaimer</a>
+        </div>
+        <p>© 2021 Overlander All Rights Reserved</p>
+      </div>
     </el-form>
   </div>
 </template>
 <script>
-import axios from "axios";
-export default {
-  name: "app",
-  data() {
-    return {
-      checkedNews: false,
-      checkedPromotion: false,
-      gender: "",
-      url: "http://anywhere.com",
-      data: {
-        country: [],
-        user: {
-          firstName: "",
-          lastName: "",
-          phoneCode: null,
-          phoneNumber: "",
-          password: "",
-          country: null,
-          email: "",
-          year: "",
-          month: "",
-          gender: "",
-          interests: null,
-        },
-      },
-      rules: {
-        firstName: [
-          {
-            required: true,
-            message: "Please input first name",
-            trigger: "blur",
-          },
-          {
-            min: 3,
-            message: "Too short first name",
-            trigger: "blur",
-          },
-        ],
-        lastName: [
-          {
-            required: true,
-            message: "Please input last name",
-            trigger: "blur",
-          },
-          {
-            min: 3,
-            message: "Too short last name",
-            trigger: "blur",
-          },
-        ],
-        year: [
-          {
-            min: 4,
-            message: "Too short year",
-            trigger: "blur",
-          },
-          {
-            max: 4,
-            message: "Too long year",
-            trigger: "blur",
-          },
-        ],
-      },
-    };
-  },
-  methods: {
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          console.log("submit!");
-        } else {
-          console.log("error submit!!");
-          return false;
-        }
-      });
-    },
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
-    },
-    getAllPhoneCodes() {
-      axios
-        .get("general/phonecode/get")
-        .then((result) => {
-          this.data.country = result.data;
-          for (let keys in result.data) {
-            this.data.country[keys]["phonecode"] =
-              "+ " + result.data[keys]["phonecode"];
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-  },
-  async mounted() {
-    this.getAllPhoneCodes();
-  },
-};
+import Script from "./script.js";
+export default Script;
 </script>
 
-<style lang="scss">
-@import "./FromComponent.scss";
+<style lang="scss" scoped>
+@import "./style.css";
 </style>

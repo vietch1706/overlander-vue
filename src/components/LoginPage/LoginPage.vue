@@ -1,11 +1,11 @@
 <template>
-  <div class="register-container">
-    <div class="register-item left">
-      <div class="register-img">
+  <div class="login-container">
+    <div class="login-item left">
+      <div class="login-img">
         <div class="side-image">
           <p class="head-text">
-            Join <br />
-            Overlander
+            Welcome <br />
+            Back
           </p>
           <p class="sub-text"><span>Already</span> Existing Member?</p>
           <p class="description-text">
@@ -16,11 +16,11 @@
         </div>
       </div>
     </div>
-    <div class="register-item right">
+    <div class="login-item right">
       <div class="text-field">
         <div class="top-text">
           <div class="create-field">
-            <p><span>Crea</span>te a New Account</p>
+            <p><span>Logi</span>n</p>
           </div>
           <div class="top-img">
             <img src="@/assets/RegisterComponent/image 23.png" alt="" />
@@ -28,33 +28,43 @@
         </div>
         <div class="login-field">
           <p>
-            New an account Overlander
-            <router-link to="/login"> <a>Login</a></router-link>
+            Need a new account?
+            <router-link to="/register"> <a>Create an account</a></router-link>
           </p>
         </div>
       </div>
-      <form-component />
+      <component :is="CurrentComponent" />
     </div>
   </div>
 </template>
 
 <script>
-import FormComponent from "./FormComponent/FormComponent.vue";
-
+import PhoneComponent from "@/components/LoginPage/PhoneloginComponent/PhoneloginComponent.vue";
+import MemberComponent from "@/components/LoginPage/MemberloginComponent/MemberComponent.vue";
 export default {
   components: {
-    FormComponent,
+    PhoneComponent,
+    MemberComponent,
   },
   data() {
     return {
+      CurrentComponent: "PhoneComponent",
       url: "http://anywhere.com",
     };
   },
-  methods: {},
+  methods: {
+    changeLoginMethod: function () {
+      if (this.CurrentComponent == "PhoneComponent") {
+        this.CurrentComponent = "MemberComponent";
+      } else {
+        this.CurrentComponent = "PhoneComponent";
+      }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
-.register-container {
+.login-container {
   max-width: 1440px;
   margin: 0 auto;
   display: flex;
@@ -65,11 +75,12 @@ export default {
   }
   .right {
     flex-basis: 60%;
-    padding-top: 20px;
+    padding: 260px 0 260px 0;
   }
-  .register-item {
+  .login-item {
     align-self: flex-start;
-    .register-img {
+    justify-self: center;
+    .login-img {
       width: 100%;
       height: 100%;
       .side-image {
@@ -80,7 +91,7 @@ export default {
         background-image: url(@/assets/RegisterComponent/side-image.png);
         background-repeat: no-repeat;
         width: 100%;
-        height: 120vh;
+        height: 100vh;
         background-size: 100%;
         color: #fff;
         .head-text {

@@ -1,20 +1,24 @@
 <template>
   <div id="app">
-    <register-page></register-page>
+    <Header />
+    <main class="main-component">
+      <router-view></router-view>
+    </main>
   </div>
 </template>
 
 <script>
-import RegisterPage from "./components/ResisterPage/RegisterPage.vue";
+import Header from "./components/Header/Header.vue";
 export default {
   name: "app",
   components: {
-    RegisterPage,
+    Header,
   },
 };
 </script>
 
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 * {
   font-family: "Kanit";
   box-sizing: border-box;
@@ -41,5 +45,11 @@ button {
 input {
   border: none;
   outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 </style>
