@@ -75,11 +75,9 @@ export default {
   }
   .right {
     flex-basis: 60%;
-    padding: 260px 0 260px 0;
   }
   .login-item {
-    align-self: flex-start;
-    justify-self: center;
+    align-self: center;
     .login-img {
       width: 100%;
       height: 100%;

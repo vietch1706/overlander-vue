@@ -50,10 +50,8 @@
                 :label="item.id"
                 :value="item.phonecode"
               >
-                <span style="float: left">
-                  <img :src="item.flags" alt=""
-                /></span>
-                <span>{{ item.phonecode }}</span>
+                <span :class="item.flags" style=""> </span>
+                <span> {{ item.phonecode }}</span>
               </el-option>
             </el-select>
           </el-form-item>
@@ -242,16 +240,21 @@
           >
           <template label="scope">
             <label class="overwrite-label-note">
-              By create account, you agree to our
-              <a :href="url">Terms & Conditions</a>
+              By create account, you agree to our<router-link
+                to="/terms-and-conditions"
+              >
+                Terms & Conditions</router-link
+              >
             </label>
           </template>
         </div>
       </div>
       <div class="bottom-container">
         <div class="bottom-btn">
-          <a :href="url">Terms & Conditions</a><a :href="url">Privacy Policy</a
-          ><a :href="url">Disclaimer</a>
+          <router-link to="/terms-and-conditions">
+            Terms & Conditions</router-link
+          ><router-link to="privacy-policy"> Policy Privacy </router-link
+          ><router-link to="/disclaimer"> Disclaimer </router-link>
         </div>
         <p>© 2021 Overlander All Rights Reserved</p>
       </div>

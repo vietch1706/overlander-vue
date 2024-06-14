@@ -20,10 +20,8 @@
                 :label="item.id"
                 :value="item.phonecode"
               >
-                <span style="float: left">
-                  <img :src="item.flags" alt=""
-                /></span>
-                <span>{{ item.phonecode }}</span>
+                <span :class="item.flags" style=""> </span>
+                <span> {{ item.phonecode }}</span>
               </el-option>
             </el-select>
           </el-form-item>
