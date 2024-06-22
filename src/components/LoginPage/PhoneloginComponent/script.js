@@ -2,14 +2,13 @@ import axios from "axios";
 export default {
   data() {
     return {
-      url: "http://anywhere.com",
       data: {
         country: [],
         phoneCode: null,
         phoneNumber: "",
         user: {
-          password: "",
           phone: "",
+          password: "",
         },
       },
       rules: {

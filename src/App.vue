@@ -1,22 +1,22 @@
 <template>
   <div id="app">
-    <Header />
+    <header-page />
     <main class="main-component">
       <router-view></router-view>
     </main>
-    <Footer />
+    <footer-page />
   </div>
 </template>
 
 <script>
-import Header from "./components/Header/Header.vue";
-import Footer from "./components/PageFooter/PageFooter.vue";
+import HeaderPage from "./components/HeaderPage/HeaderPage.vue";
+import FooterPage from "./components/FooterPage/FooterPage.vue";
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 export default {
   name: "app",
   components: {
-    Header,
-    Footer,
+    HeaderPage,
+    FooterPage,
   },
 };
 </script>

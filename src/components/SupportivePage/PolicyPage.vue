@@ -80,9 +80,11 @@ export default {
     }
   }
   h1 {
-    text-decoration: underline solid #78c147 10px;
-    text-underline-offset: 20px;
-    padding: 40px 0;
+    background-image: linear-gradient(#78c147 0 0);
+    background-position: bottom left;
+    background-size: 4.7% 6px;
+    background-repeat: no-repeat;
+    padding-bottom: 10px;
   }
 }
 </style>

@@ -1,0 +1,81 @@
+.phone-container {
+  .text-field {
+    .top-text {
+      display: flex;
+      .transfer-field {
+        color: #0b1d35;
+        font-weight: 800;
+        font-size: 36px;
+        p {
+          background-image: linear-gradient(#78c147 0 0);
+          background-position: bottom left;
+          background-size: 18% 5px;
+          background-repeat: no-repeat;
+          padding-bottom: 5px;
+        }
+      }
+      .top-img {
+        align-self: center;
+        padding: 0 0 1rem 1rem;
+        width: 20%;
+        img {
+          width: 25%;
+        }
+      }
+    }
+    .note-text {
+      font-weight: 400;
+      font-size: 16px;
+    }
+  }
+
+  .phone-form-container {
+    .el-form-item__content {
+      line-height: unset;
+    }
+    .overwrite-label-phone {
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 18px;
+      color: #3c4a5d;
+      .required {
+        display: inline-block;
+        color: #e22b30;
+        font-size: 20px;
+      }
+    }
+
+    .overwrite-form-item-phone {
+      width: 100%;
+      .el-input__inner,
+      .el-textarea__inner {
+        padding: 0.5rem 0.75rem;
+        background: #e7e9eb;
+        gap: 12px;
+        align-self: stretch;
+        border-color: #ced2d7;
+        caret-color: #78c147;
+      }
+      .el-input__inner:focus,
+      .el-textarea__inner:focus {
+        border-bottom: #78c147 solid 4px;
+      }
+    }
+
+    .el-button {
+      background: #a1d47e;
+      width: 100%;
+      font-size: 20px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .change-method {
+      color: #0b1d35;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline solid #0b1d35 2px;
+    }
+  }
+}

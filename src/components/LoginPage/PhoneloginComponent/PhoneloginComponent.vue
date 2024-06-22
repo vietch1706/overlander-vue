@@ -1,5 +1,5 @@
 <template>
-  <div class="form-container">
+  <div class="login-form-container">
     <el-form
       :model="data.user"
       :rules="rules"
@@ -8,12 +8,16 @@
       label-position="top"
     >
       <div class="row">
-        <div class="col-sm-4 pt-2 phone-code-field">
+        <div class="col-sm-4 pt-2">
           <template label="scope">
             <label class="overwrite-label-login">Phone No. </label>
           </template>
           <el-form-item prop="phoneCode">
-            <el-select v-model="data.phoneCode" placeholder="Select">
+            <el-select
+              v-model="data.phoneCode"
+              placeholder="Select"
+              class="overwrite-form-item-login"
+            >
               <el-option
                 v-for="item in data.country"
                 :key="item.id"
@@ -64,7 +68,7 @@
           >
           <template label="scope">
             <label class="overwrite-label-note">
-              <a :href="url">Forgot Password?</a>
+              <router-link to="/reset-password">Forgot Password?</router-link>
             </label>
           </template>
         </div>

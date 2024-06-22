@@ -1,5 +1,5 @@
 <template>
-  <div class="form-container">
+  <div class="login-form-container">
     <el-form
       :model="data.user"
       :rules="rules"
@@ -54,7 +54,7 @@
           >
           <template label="scope">
             <label class="overwrite-label-note">
-              <a :href="url">Forgot Password?</a>
+              <router-link to="/reset-password">Forgot Password?</router-link>
             </label>
           </template>
         </div>
@@ -67,6 +67,4 @@ import Script from "./script.js";
 export default Script;
 </script>
 
-<style lang="scss" scoped>
-@import "./style.css";
-</style>
+<style lang="scss" scoped></style>

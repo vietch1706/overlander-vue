@@ -1,0 +1,89 @@
+.changepass-form-container {
+  .el-form-item__content {
+    line-height: unset;
+  }
+  padding: 0 3.5rem;
+  .overwrite-label-changepass {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 18px;
+    color: #3c4a5d;
+    .required {
+      display: inline-block;
+      color: #e22b30;
+      font-size: 20px;
+    }
+  }
+
+  .error-message {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 12px;
+    color: #ee1b1b;
+  }
+
+  .overwrite-form-item-changepass {
+    width: 100%;
+    .el-input__inner,
+    .el-textarea__inner {
+      padding: 0.5rem 0.75rem;
+      background: #e7e9eb;
+      gap: 12px;
+      align-self: stretch;
+      border-color: #ced2d7;
+    }
+    .el-input-group__append {
+      border-left: none;
+      gap: 12px;
+      background: #e7e9eb;
+      border-color: #ced2d7;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 18px;
+      color: #3c4a5d;
+    }
+  }
+
+  .overwrite-label-note {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 12px;
+    color: #6d7786;
+  }
+
+  .overwrite-label-changepass {
+    a {
+      color: #134b96;
+      font-size: 18px;
+      font-weight: 600;
+      text-decoration: underline solid #134b96 2px;
+      padding-bottom: 2px;
+      cursor: pointer;
+    }
+  }
+
+  .overwrite-form-item-password {
+    width: 100%;
+    .el-input__inner,
+    .el-textarea__inner {
+      padding: 0.5rem 0.75rem;
+      background: #e7e9eb;
+      gap: 12px;
+      align-self: stretch;
+      border-color: #ced2d7;
+      caret-color: #78c147;
+    }
+    .el-input__inner:focus,
+    .el-textarea__inner:focus {
+      border-bottom: #78c147 solid 4px;
+    }
+  }
+
+  .el-button {
+    background: #a1d47e;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+  }
+}

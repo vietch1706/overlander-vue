@@ -1,4 +1,4 @@
-.form-container {
+.login-form-container {
   .el-form-item__content {
     line-height: unset;
   }
@@ -19,23 +19,7 @@
       font-weight: 600;
       text-decoration: underline solid #134b96 2px;
       padding-bottom: 2px;
-    }
-    a:hover {
       cursor: pointer;
-    }
-  }
-
-  .phone-code-field {
-    .el-input__inner {
-      background: #e7e9eb;
-      border-color: #ced2d7;
-      color: #0b1d35;
-    }
-
-    select option {
-      background: #162945;
-      color: #ffff;
-      padding: 10px 0;
     }
   }
 
@@ -48,6 +32,11 @@
       gap: 12px;
       align-self: stretch;
       border-color: #ced2d7;
+      caret-color: #78c147;
+    }
+    .el-input__inner:focus,
+    .el-textarea__inner:focus {
+      border-bottom: #78c147 solid 4px;
     }
   }
 
