@@ -17,7 +17,7 @@
             </div>
           </div>
           <div class="sub-field">
-            <p>Please enter your phone no. to reset password</p>
+            <p>Please enter your email address to reset password</p>
           </div>
         </div>
         <reset-form-component></reset-form-component>

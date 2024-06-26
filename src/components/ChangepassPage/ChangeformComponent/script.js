@@ -6,7 +6,7 @@ export default {
       data: {
         error_message: "",
         user: {
-          phone: "",
+          email: "",
           new_password: "",
           confirm_password: "",
         },
@@ -23,12 +23,10 @@ export default {
           } else {
             this.data.error_message = "";
             axios
-              .get("users/user/change-password", {
-                params: {
-                  new_password: this.data.user.new_password,
-                  confirm_password: this.data.user.confirm_password,
-                  phone: this.data.user.phone,
-                },
+              .post("users/user/reset-password", {
+                new_password: this.data.user.new_password,
+                confirm_password: this.data.user.confirm_password,
+                email: this.data.user.email,
               })
               .then((response) => {
                 console.log();
@@ -45,7 +43,6 @@ export default {
                     greetings: "Welcome back!",
                     note: "You have changed the password successfully!",
                     button: "Go to Login",
-                    phone: this.data.user.phone,
                   },
                 });
                 this.resetForm(formName);
@@ -58,7 +55,7 @@ export default {
                 });
               });
           }
-          console.log(this.data.user);
+          this.showErrorMessage();
         } else {
           console.log("error submit!!");
           return false;
@@ -68,22 +65,7 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
-    getAllPhoneCodes() {
-      axios
-        .get("general/phonecode/get")
-        .then((result) => {
-          this.data.country = result.data;
-          for (let keys in result.data) {
-            this.data.country[keys]["phonecode"] =
-              "+ " + result.data[keys]["phonecode"];
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
     showErrorMessage() {
-      console.log(this.data.error_message);
       if (this.data.error_message === "") {
         this.error = false;
       }
@@ -91,13 +73,11 @@ export default {
         this.error = true;
       }
     },
-    getUserPhoneNumber() {
-      this.data.user.phone = this.$route.params.phone;
+    getUserEmailAddress() {
+      this.data.user.email = this.$route.params.email;
     },
   },
   async mounted() {
-    this.getAllPhoneCodes();
-    this.showErrorMessage();
-    this.getUserPhoneNumber();
+    this.getUserEmailAddress();
   },
 };

@@ -72,7 +72,7 @@ export default {
       axios
         .get("users/user/get", {
           params: {
-            phone: this.$route.params.phone,
+            email: this.$route.params.email,
           },
         })
         .then((result) => {

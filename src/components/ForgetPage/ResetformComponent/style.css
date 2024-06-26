@@ -8,11 +8,6 @@
     font-size: 18px;
     line-height: 18px;
     color: #3c4a5d;
-    .required {
-      display: inline-block;
-      color: #e22b30;
-      font-size: 20px;
-    }
   }
 
   .overwrite-label-password-change {

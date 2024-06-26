@@ -10,25 +10,8 @@
       <div class="row">
         <div class="col-sm-4 pt-2">
           <template label="scope">
-            <label class="overwrite-label-login">Phone No. </label>
+            <label class="overwrite-label-login"> Email Address </label>
           </template>
-          <el-form-item prop="phoneCode">
-            <el-select
-              v-model="data.phoneCode"
-              placeholder="Select"
-              class="overwrite-form-item-login"
-            >
-              <el-option
-                v-for="item in data.country"
-                :key="item.id"
-                :label="item.id"
-                :value="item.phonecode"
-              >
-                <span :class="item.flags" style=""> </span>
-                <span> {{ item.phonecode }}</span>
-              </el-option>
-            </el-select>
-          </el-form-item>
         </div>
         <div class="col-sm-8 pt-2">
           <template label="scope">
@@ -36,14 +19,15 @@
               <a @click="changeLoginMethod">Login with member no.</a>
             </div>
           </template>
-          <el-form-item prop="phoneNumber">
-            <el-input
-              v-model="data.phoneNumber"
-              type="number"
-              class="overwrite-form-item-login"
-            ></el-input>
-          </el-form-item>
         </div>
+        <el-form-item prop="email">
+          <el-input
+            v-model="data.user.email"
+            type="text"
+            class="overwrite-form-item-login"
+            required
+          ></el-input>
+        </el-form-item>
       </div>
       <div class="row row-cols-1">
         <div class="col sp-2">

@@ -15,6 +15,7 @@ export default {
         country: [],
         phoneCode: null,
         phoneNumber: "",
+        interests: [],
         user: {
           first_name: "",
           last_name: "",
@@ -91,20 +92,18 @@ export default {
   },
   methods: {
     submitForm(formName) {
-      this.error_message.phone = "";
-      this.error_message.email = "";
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          console.log("submit!");
+          this.error_message.phone = "";
+          this.error_message.email = "";
           this.data.user.phone =
             this.data.phoneCode.toString().replace(/\s/g, "") +
             this.data.phoneNumber.toString();
+          console.log(this.data.user.email, this.data.user.phone);
           axios
-            .get("/users/user/check-exist", {
-              params: {
-                email: this.data.user.email,
-                phone: this.data.user.phone,
-              },
+            .post("/users/user/check-exist", {
+              email: this.data.user.email,
+              phone: this.data.user.phone,
             })
             .then((result) => {
               this.showErrorMessage();
@@ -124,10 +123,9 @@ export default {
                       type: "success",
                     });
                     axios
-                      .get("/users/user/send-verification-code", {
-                        params: {
-                          phone: this.data.user.phone,
-                        },
+                      .post("/users/user/send-verification-code", {
+                        email: this.data.user.email,
+                        method: "Register",
                       })
                       .then((result) => {
                         console.log(result);
@@ -136,7 +134,8 @@ export default {
                           params: {
                             first_name: this.data.user.first_name,
                             last_name: this.data.user.last_name,
-                            phone: this.data.user.phone,
+                            phoneCode: this.data.phoneCode,
+                            phoneNumber: this.data.phoneNumber,
                             country: this.data.user.country,
                             email: this.data.user.email,
                             previous: "registerPage",
@@ -190,9 +189,24 @@ export default {
           console.log(error);
         });
     },
+    getAllInterests() {
+      axios
+        .get("general/interests/get")
+        .then((result) => {
+          this.data.interests = result.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
     getAllDataUser() {
       if (this.data.user["first_name"] === "") {
-        this.data.user = this.$route.params;
+        this.data.user.first_name = this.$route.params.first_name;
+        this.data.user.last_name = this.$route.params.last_name;
+        this.data.phoneCode = this.$route.params.phoneCode;
+        this.data.phoneNumber = this.$route.params.phoneNumber;
+        this.data.user.country = this.$route.params.country;
+        this.data.user.email = this.$route.params.email;
       }
     },
     showErrorMessage() {
@@ -208,5 +222,6 @@ export default {
     this.getAllPhoneCodes();
     this.getAllDataUser();
     this.showErrorMessage();
+    this.getAllInterests();
   },
 };

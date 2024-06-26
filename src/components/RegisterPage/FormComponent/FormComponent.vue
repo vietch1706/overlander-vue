@@ -54,7 +54,7 @@
                 :label="item.id"
                 :value="item.phonecode"
               >
-                <span :class="item.flags" style=""> </span>
+                <span :class="item.flags"> </span>
                 <span> {{ item.phonecode }}</span>
               </el-option>
             </el-select>
@@ -210,15 +210,18 @@
               </label>
             </template>
             <el-select
-              v-model="data.user.interests"
+              v-model="data.interests.user"
               filterable
               class="overwrite-form-item-register"
               placeholder="Select your interests"
+              multiple
+              :multiple-limit="3"
+              default-first-option
             >
               <el-option
                 v-for="value in data.interests"
                 :key="value.id"
-                :value="value.id"
+                :value="value.name"
                 :label="value.name"
               >
               </el-option>

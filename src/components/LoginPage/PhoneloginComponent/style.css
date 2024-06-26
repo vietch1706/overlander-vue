@@ -38,6 +38,9 @@
     .el-textarea__inner:focus {
       border-bottom: #78c147 solid 4px;
     }
+    .is-error {
+      border-bottom: #ee1b1b solid 4px;
+    }
   }
 
   .el-button {

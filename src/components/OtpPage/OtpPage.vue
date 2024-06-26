@@ -9,7 +9,7 @@
       <div class="text-field">
         <div class="top-text">
           <div class="head-text">
-            <p>Verify Your Phone</p>
+            <p>Verify Your Email Address</p>
           </div>
           <div class="top-img">
             <img src="@/assets/OtpComponent/image 23.png" alt="" />
@@ -17,12 +17,12 @@
         </div>
         <div class="sub-text">
           <p>
-            Please enter the OTP in the verification SMS <br />
+            Please enter the OTP in the verification Email <br />
             we have sent to
-            <span> {{ this.data.user.phone }}</span> <br />
+            <span> {{ this.data.user.email }}</span> <br />
           </p>
           <p class="back-page" @click="backPage($route.params.previous)">
-            Re-enter your phone no.
+            Re-enter your email address.
           </p>
         </div>
       </div>
@@ -44,7 +44,7 @@
       >
       <template label="scope">
         <label class="overwrite-label-note">
-          Didn’t get the SMS?
+          Didn’t get the email?
           <router-link to="" v-if="available">
             Send Again ({{ data.timerCount }})
           </router-link>
@@ -76,7 +76,7 @@ export default {
       started: null,
       data: {
         user: {
-          phone: "",
+          email: "",
           code: "",
         },
         timerCount: 60,
@@ -87,14 +87,11 @@ export default {
   methods: {
     submitUser() {
       axios
-        .get("/users/user/verify-code", {
-          params: {
-            phone: this.data.user.phone,
-            code: this.data.user.code,
-          },
+        .post("/users/user/verify-code", {
+          email: this.data.user.email,
+          code: this.data.user.code,
         })
         .then((result) => {
-          console.log(result);
           console.log("success");
           this.$notify({
             title: "Save Success",
@@ -111,9 +108,8 @@ export default {
           console.log(error);
         });
     },
-    getPhoneNumber() {
-      console.log(this.$route.params);
-      this.data.user.phone = this.$route.params.phone;
+    getEmailAddress() {
+      this.data.user.email = this.$route.params.email;
     },
     countdown() {
       if (this.started) {
@@ -134,7 +130,7 @@ export default {
         this.$router.push({
           name: "changePassPage",
           params: {
-            phone: this.data.user.phone,
+            email: this.data.user.email,
           },
         });
       } else if (previousPage === "registerPage") {
@@ -145,7 +141,6 @@ export default {
             greeting: "Welcome abroad! ",
             note: "Hope you enjoy your experience in Overlander!",
             button: "Go to Homepage",
-            phone: this.data.user.phone,
           },
         });
       }
@@ -168,7 +163,7 @@ export default {
     },
   },
   async mounted() {
-    this.getPhoneNumber();
+    this.getEmailAddress();
     this.countdown();
   },
 };
@@ -205,7 +200,7 @@ export default {
       .head-text {
         color: #0b1d35;
         font-weight: 800;
-        font-size: 36px;
+        font-size: 30px;
         p {
           background-image: linear-gradient(#78c147 0 0);
           background-position: bottom left;

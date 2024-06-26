@@ -50,12 +50,7 @@
       </div>
       <div class="row row-cols-1 pt-4">
         <div class="col sp-2">
-          <el-button
-            type="button"
-            @click="
-              submitForm('ruleForm');
-              showErrorMessage();
-            "
+          <el-button type="button" @click="submitForm('ruleForm')"
             >Change Password</el-button
           >
         </div>

@@ -5,11 +5,8 @@ export default {
       error_message: "",
       error: false,
       data: {
-        country: [],
-        phoneCode: null,
-        phoneNumber: "",
         user: {
-          phone: "",
+          email: "",
         },
       },
     };
@@ -20,33 +17,25 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           console.log("submit!");
-          this.data.user.phone =
-            this.data.phoneCode.toString().replace(/\s/g, "") +
-            this.data.phoneNumber.toString();
           axios
-            .get("/users/user/check-exist", {
-              params: {
-                phone: this.data.user.phone,
-              },
+            .post("/users/user/check-exist", {
+              email: this.data.user.email,
             })
             .then((result) => {
               this.showErrorMessage();
               if (result.data !== "") {
-                console.log(result.data);
                 this.error_message = "";
                 axios
-                  .get("/users/user/send-verification-code", {
-                    params: {
-                      phone: this.data.user.phone,
-                    },
+                  .post("/users/user/send-verification-code", {
+                    email: this.data.user.email,
+                    method: "Forget Password",
                   })
                   .then((result) => {
-                    console.log(this.data.user);
                     console.log(result);
                     this.$router.push({
                       name: "otpPage",
                       params: {
-                        phone: this.data.user.phone,
+                        email: this.data.user.email,
                         previous: "forgetPage",
                       },
                     });
@@ -58,7 +47,7 @@ export default {
                     console.log(error);
                   });
               } else {
-                this.error_message = "The phone number is not available";
+                this.error_message = "The Email is not available";
               }
             })
             .catch((error) => {
@@ -78,26 +67,6 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
-    getAllPhoneCodes() {
-      axios
-        .get("general/phonecode/get")
-        .then((result) => {
-          this.data.country = result.data;
-          for (let keys in result.data) {
-            this.data.country[keys]["phonecode"] =
-              "+ " + result.data[keys]["phonecode"];
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    getPhoneNumber() {
-      let phoneNumber =
-        this.data.phoneCode.toString().replace(/\s/g, "") +
-        this.data.phoneNumber.toString();
-      return phoneNumber;
-    },
     showErrorMessage() {
       if (this.error_message === "") {
         this.error = true;
@@ -109,8 +78,5 @@ export default {
   },
   async mounted() {
     this.getAllPhoneCodes();
-    this.$root.$on("ForgetComponent", () => {
-      this.getPhoneNumber();
-    });
   },
 };
