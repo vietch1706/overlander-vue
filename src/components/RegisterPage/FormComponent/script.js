@@ -75,18 +75,6 @@ export default {
             trigger: "blur",
           },
         ],
-        year: [
-          {
-            min: 4,
-            message: "Too short year",
-            trigger: "blur",
-          },
-          {
-            max: 4,
-            message: "Too long year",
-            trigger: "blur",
-          },
-        ],
       },
     };
   },
@@ -99,7 +87,7 @@ export default {
           this.data.user.phone =
             this.data.phoneCode.toString().replace(/\s/g, "") +
             this.data.phoneNumber.toString();
-          console.log(this.data.user.email, this.data.user.phone);
+          console.log(this.data.user);
           axios
             .post("/users/user/check-exist", {
               email: this.data.user.email,

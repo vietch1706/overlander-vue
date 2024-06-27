@@ -151,24 +151,48 @@
         </template>
         <div class="col sp-2 pt-3">
           <el-form-item prop="year">
-            <el-input
+            <!-- <el-input
               v-model="data.user.year"
               type="number"
               class="overwrite-form-item-register append-slot"
               placeholder="YYYY"
               ><template slot="append">Year</template>
-            </el-input>
+            </el-input> -->
+            <div class="inside-text">
+              <strong>Year</strong>
+            </div>
+            <el-date-picker
+              v-model="data.user.year"
+              type="year"
+              format="yyyy"
+              value-format="yyyy"
+              placeholder="YYYY"
+              class="overwrite-form-item-register date-picker"
+            >
+            </el-date-picker>
           </el-form-item>
         </div>
         <div class="col ps-2 pt-3">
           <el-form-item prop="month">
-            <el-input
+            <!-- <el-input
               v-model="data.user.month"
               type="number"
               class="overwrite-form-item-register append-slot"
               placeholder="MM"
               ><template slot="append">Month</template></el-input
+            > -->
+            <div class="inside-text">
+              <strong>Month</strong>
+            </div>
+            <el-date-picker
+              v-model="data.user.month"
+              type="month"
+              format="MM"
+              value-format="M"
+              placeholder="MM"
+              class="overwrite-form-item-register date-picker"
             >
+            </el-date-picker>
           </el-form-item>
         </div>
       </div>
@@ -217,11 +241,13 @@
               multiple
               :multiple-limit="3"
               default-first-option
+              placement="bottom-start"
             >
               <el-option
+                placement="bottom-start"
                 v-for="value in data.interests"
                 :key="value.id"
-                :value="value.name"
+                :value="value.id"
                 :label="value.name"
               >
               </el-option>

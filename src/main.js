@@ -7,8 +7,10 @@ import store from "./store";
 import "./axios";
 import vuetify from "./plugins/vuetify";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import locale from "element-ui/lib/locale/lang/en";
+
 Vue.config.productionTip = false;
-Vue.use(ElementUI);
+Vue.use(ElementUI, { locale });
 new Vue({
   router,
   store,
