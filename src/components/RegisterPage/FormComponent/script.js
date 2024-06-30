@@ -13,9 +13,10 @@ export default {
       },
       data: {
         country: [],
-        phoneCode: null,
+        phoneCode: "",
         phoneNumber: "",
         interests: [],
+        image: "",
         user: {
           first_name: "",
           last_name: "",
@@ -26,7 +27,7 @@ export default {
           year: "",
           month: "",
           gender: "",
-          interests: "",
+          interests: [],
         },
       },
       rules: {
@@ -167,10 +168,12 @@ export default {
       axios
         .get("general/phonecode/get")
         .then((result) => {
+          console.log(result.data);
           this.data.country = result.data;
           for (let keys in result.data) {
-            this.data.country[keys]["phonecode"] =
-              "+ " + result.data[keys]["phonecode"];
+            this.data.country[keys]["code"] = "+" + result.data[keys]["code"];
+            this.data.country[keys]["image"] =
+              "fi fi-" + result.data[keys]["image"];
           }
         })
         .catch((error) => {

@@ -52,10 +52,11 @@
                 v-for="item in data.country"
                 :key="item.id"
                 :label="item.id"
-                :value="item.phonecode"
+                :value="item.code"
               >
-                <span :class="item.flags"> </span>
-                <span> {{ item.phonecode }}</span>
+                <span :class="item.image"> </span>
+                <span>{{ " " + item.country }} </span>
+                <span style="float: right">{{ item.code }}</span>
               </el-option>
             </el-select>
             <template label="scope">
@@ -116,7 +117,7 @@
                 v-for="item in data.country"
                 :key="item.id"
                 :label="item.id"
-                :value="item.name"
+                :value="item.country"
               ></el-option>
             </el-select>
           </el-form-item>
@@ -234,7 +235,7 @@
               </label>
             </template>
             <el-select
-              v-model="data.interests.user"
+              v-model="data.user.interests"
               filterable
               class="overwrite-form-item-register"
               placeholder="Select your interests"
@@ -247,7 +248,7 @@
                 placement="bottom-start"
                 v-for="value in data.interests"
                 :key="value.id"
-                :value="value.id"
+                :value="value.name"
                 :label="value.name"
               >
               </el-option>
