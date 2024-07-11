@@ -245,7 +245,6 @@
               placement="bottom-start"
             >
               <el-option
-                placement="bottom-start"
                 v-for="value in data.interests"
                 :key="value.id"
                 :value="value.name"
@@ -260,7 +259,7 @@
         <div class="col sp-2 check-box">
           <template>
             <!-- `checked` should be true or false -->
-            <el-checkbox v-model="checkedNews"
+            <el-checkbox v-model="data.user.e_newsletter"
               >I would like to receive email about news and
               promotion</el-checkbox
             >
@@ -271,7 +270,7 @@
         <div class="col sp-2 check-box">
           <template>
             <!-- `checked` should be true or false -->
-            <el-checkbox v-model="checkedPromotion"
+            <el-checkbox v-model="data.user.mail_receive"
               >I would like to receive promotion booklet</el-checkbox
             >
           </template>

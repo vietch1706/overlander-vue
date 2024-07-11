@@ -28,6 +28,8 @@ export default {
           month: "",
           gender: "",
           interests: [],
+          e_newsletter: false,
+          mail_receive: false,
         },
       },
       rules: {
@@ -102,49 +104,7 @@ export default {
               } else {
                 this.error_message.phone = "";
                 this.error_message.email = "";
-                axios
-                  .post("/users/user/register", this.data.user)
-                  .then((result) => {
-                    console.log("success");
-                    this.$notify({
-                      title: "Save Success",
-                      message: result.data.message,
-                      type: "success",
-                    });
-                    axios
-                      .post("/users/user/send-verification-code", {
-                        email: this.data.user.email,
-                        method: "Register",
-                      })
-                      .then((result) => {
-                        console.log(result);
-                        this.$router.push({
-                          name: "otpPage",
-                          params: {
-                            first_name: this.data.user.first_name,
-                            last_name: this.data.user.last_name,
-                            phoneCode: this.data.phoneCode,
-                            phoneNumber: this.data.phoneNumber,
-                            country: this.data.user.country,
-                            email: this.data.user.email,
-                            previous: "registerPage",
-                          },
-                        });
-                      })
-                      .catch((error) => {
-                        this.$notify.error({
-                          title: "Error",
-                        });
-                        console.log(error);
-                      });
-                  })
-                  .catch((error) => {
-                    console.log("error!");
-                    this.$notify.error({
-                      title: "Error",
-                    });
-                    console.log(error);
-                  });
+                this.postRegister();
               }
             })
             .catch((error) => {
@@ -163,6 +123,54 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
+    },
+    postRegister() {
+      axios
+        .post("/users/user/register", this.data.user)
+        .then((result) => {
+          console.log("success");
+          this.$notify({
+            title: "Save Success",
+            message: result.data.message,
+            type: "success",
+          });
+          this.postSendCode();
+        })
+        .catch((error) => {
+          console.log("error!");
+          this.$notify.error({
+            title: "Error",
+          });
+          console.log(error);
+        });
+    },
+    postSendCode() {
+      axios
+        .post("/users/user/send-verification-code", {
+          email: this.data.user.email,
+          method: "Register",
+        })
+        .then((result) => {
+          console.log(result);
+          this.$router.push({
+            name: "otpPage",
+            params: {
+              first_name: this.data.user.first_name,
+              last_name: this.data.user.last_name,
+              phoneCode: this.data.phoneCode,
+              phoneNumber: this.data.phoneNumber,
+              country: this.data.user.country,
+              email: this.data.user.email,
+              previous: "registerPage",
+            },
+          });
+        })
+        .catch((error) => {
+          this.$notify.error({
+            title: "Error",
+          });
+          console.log(error);
+        });
     },
     getAllPhoneCodes() {
       axios

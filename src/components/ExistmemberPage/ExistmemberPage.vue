@@ -37,12 +37,14 @@ import ButtonComponent from "./ButtonComponent/ButtonComponent.vue";
 import PhoneComponent from "./PhoneComponent/PhoneComponent.vue";
 import EmailComponent from "./EmailComponent/EmailComponent.vue";
 import MemberComponent from "./MemberComponent/MemberComponent.vue";
+import QuestionComponent from "./QuestionComponent/QuestionComponent.vue";
 export default {
   components: {
     ButtonComponent,
     PhoneComponent,
     EmailComponent,
     MemberComponent,
+    QuestionComponent,
   },
   data() {
     return {
@@ -50,6 +52,19 @@ export default {
         backgroundImage: `url(${require("@/assets/ExistmemberComponent/side-image.png")})`,
       },
       CurrentComponent: "ButtonComponent",
+      data: {
+        method: "",
+        previous: "",
+      },
+      questions: {
+        BIRTH_QUESTION: 1,
+        EMAIL_QUESTION: 2,
+        MEMBERSHIP_QUESTION: 3,
+        PURCHASE_QUESTION: 4,
+        MEMBER_QUESTION: 5,
+        CODE_QUESTION: 6,
+        PHONE_QUESTION: 7,
+      },
     };
   },
   methods: {
@@ -64,6 +79,11 @@ export default {
     },
     pushToButtonComponent() {
       this.CurrentComponent = "ButtonComponent";
+    },
+    pushToQuestionComponent(data) {
+      this.CurrentComponent = "QuestionComponent";
+      this.data.previous = data.previous;
+      this.data.method = data.method;
     },
   },
 };
@@ -96,7 +116,7 @@ export default {
         flex-direction: column;
         width: 100%;
         height: 900px;
-        background-size: 100%;
+        background-size: cover;
         color: #fff;
         .head-text {
           font-size: 40px;

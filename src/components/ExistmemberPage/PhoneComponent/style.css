@@ -1,4 +1,10 @@
 .phone-container {
+  .error-message {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 12px;
+    color: #ee1b1b;
+  }
   .text-field {
     .top-text {
       display: flex;

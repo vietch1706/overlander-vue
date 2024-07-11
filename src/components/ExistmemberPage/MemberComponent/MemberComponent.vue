@@ -29,14 +29,19 @@
           <div class="col">
             <el-form-item prop="member">
               <el-input
-                v-model="data.user.member_no"
+                v-model="data.user.method"
                 type="number"
                 class="overwrite-form-item-member"
-              ></el-input>
+              ></el-input
+              ><template label="scope">
+                <span class="error-message" v-if="error">{{
+                  error_message.member_no
+                }}</span>
+              </template>
             </el-form-item>
           </div>
         </div>
-        <div class="row row-cols-1 pt-4">
+        <div class="row row-cols-1">
           <div class="col sp-2">
             <el-button type="button" @click="submitForm('ruleForm')"
               >Verify Account</el-button

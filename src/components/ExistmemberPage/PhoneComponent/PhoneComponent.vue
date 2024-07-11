@@ -37,12 +37,18 @@
                   v-for="item in data.country"
                   :key="item.id"
                   :label="item.id"
-                  :value="item.phonecode"
+                  :value="item.code"
                 >
-                  <span :class="item.flags" style=""> </span>
-                  <span> {{ item.phonecode }}</span>
+                  <span :class="item.image"> </span>
+                  <span>{{ " " + item.country }} </span>
+                  <span style="float: right">{{ item.code }}</span>
                 </el-option>
               </el-select>
+              <template label="scope">
+                <span class="error-message" v-if="error">{{
+                  error_message.phone
+                }}</span>
+              </template>
             </el-form-item>
           </div>
           <div class="col-sm-8 pt-2">
@@ -55,19 +61,19 @@
             </el-form-item>
           </div>
         </div>
-        <div class="row row-cols-1 pt-4">
-          <div class="col sp-2">
-            <el-button type="button" @click="submitForm('ruleForm')"
-              >Verify Phone No.</el-button
-            >
-          </div>
-          <div class="col sp-2">
-            <p class="change-method" @click="pushToButtonComponent()">
-              Change verify method
-            </p>
-          </div>
-        </div>
       </el-form>
+      <div class="row row-cols-1">
+        <div class="col sp-2">
+          <el-button type="button" @click="submitForm('ruleForm')"
+            >Verify Phone No.</el-button
+          >
+        </div>
+        <div class="col sp-2">
+          <p class="change-method" @click="pushToButtonComponent()">
+            Change verify method
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>

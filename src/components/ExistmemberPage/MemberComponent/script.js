@@ -2,9 +2,14 @@ import axios from "axios";
 export default {
   data() {
     return {
+      error: false,
+      error_message: {
+        member_no: "",
+      },
       data: {
         user: {
-          member_no: "",
+          method: "",
+          previous: "",
         },
       },
     };
@@ -14,26 +19,28 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           console.log("submit!");
-          console.log(this.data.user);
           axios
-            .get("/users/user/send-verification-code", {
-              params: {
-                phone: this.data.user.phone,
-              },
+            .post("/users/user/check-exist", {
+              member_no: this.data.user.method,
             })
             .then((result) => {
+              this.showErrorMessage();
               console.log(result);
-              this.$router.push({
-                name: "otpPage",
-                params: {
-                  phone: this.data.user,
-                },
-              });
+              if (result.data !== "") {
+                this.error_message.member_no = result.data.member_no;
+                console.log(result.data.member_no);
+              } else {
+                this.error_message.member_no = "";
+                this.data.user.previous =
+                  this.$parent.questions.MEMBER_QUESTION;
+                this.pushToQuestionComponent(this.data.user);
+              }
             })
             .catch((error) => {
               console.log("error!");
               this.$notify.error({
                 title: "Error",
+                message: "hehe",
               });
               console.log(error);
             });
@@ -46,10 +53,21 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
-
+    showErrorMessage() {
+      if (this.error_message.email !== "") {
+        this.error = true;
+      } else {
+        this.error = false;
+      }
+    },
     pushToButtonComponent() {
       this.$parent.pushToButtonComponent();
     },
+    pushToQuestionComponent(data) {
+      this.$parent.pushToQuestionComponent(data);
+    },
   },
-  async mounted() {},
+  async mounted() {
+    this.showErrorMessage();
+  },
 };
