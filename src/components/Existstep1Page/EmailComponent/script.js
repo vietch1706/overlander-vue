@@ -8,7 +8,8 @@ export default {
       },
       data: {
         user: {
-          method: "",
+          method: "email",
+          answer: "",
           previous: "",
         },
       },
@@ -20,28 +21,38 @@ export default {
         if (valid) {
           console.log("submit!");
           axios
-            .post("/users/user/check-exist", {
-              email: this.data.user.method,
+            .post("/users/existing-user/step-1", {
+              method: this.data.user.method,
+              answer: this.data.user.answer,
             })
             .then((result) => {
-              this.showErrorMessage();
-              console.log(result);
-              if (result.data === "") {
-                this.error = true;
-                this.error_message.email = "The Email is not exists";
-              } else {
-                this.error_message.email = "";
+              if (result.data.status === true) {
+                this.error = false;
                 this.data.user.previous = this.$parent.questions.EMAIL_QUESTION;
-                this.pushToQuestionComponent(this.data.user);
+                this.$notify({
+                  title: "Save Success",
+                  message: result.data.message,
+                  type: "success",
+                });
+                console.log(this.data.user);
+                this.$router.push({
+                  name: "otpPage",
+                  params: {
+                    email: this.data.user.answer,
+                    current: "existing",
+                    previous: this.$parent.questions.EMAIL_QUESTION,
+                  },
+                });
+                // this.pushToQuestionComponent(this.data.user.previous);
+              } else {
+                this.error = true;
               }
             })
             .catch((error) => {
-              console.log("error!");
               this.$notify.error({
                 title: "Error",
-                message: "hehe",
+                message: error.data.message,
               });
-              console.log(error);
             });
         } else {
           console.log("error submit!!");
@@ -52,13 +63,6 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
-    showErrorMessage() {
-      if (this.error_message.email !== "") {
-        this.error = true;
-      } else {
-        this.error = false;
-      }
-    },
     pushToButtonComponent() {
       this.$parent.pushToButtonComponent();
     },
@@ -66,7 +70,5 @@ export default {
       this.$parent.pushToQuestionComponent(data);
     },
   },
-  async mounted() {
-    this.showErrorMessage();
-  },
+  async mounted() {},
 };

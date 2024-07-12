@@ -18,11 +18,22 @@ const router = new VueRouter({
       name: "registerPage",
     },
     {
-      path: "/exist-member-register",
+      path: "/exist-member",
+      redirect: "/exist-member/step-1",
+    },
+    {
+      path: "/exist-member/step-1",
       component: () =>
-        import("../components/ExistmemberPage/ExistmemberPage.vue"),
-      meta: { text: "ExistmemberPage" },
-      name: "existMemberPage",
+        import("../components/Existstep1Page/Existstep1Page.vue"),
+      meta: { text: "Existstep1Page" },
+      name: "existStep1Page",
+    },
+    {
+      path: "/exist-member/step-2",
+      component: () =>
+        import("../components/Existstep2Page/Existstep2Page.vue"),
+      meta: { text: "Existstep2Page" },
+      name: "existStep2Page",
     },
     {
       path: "/successful",

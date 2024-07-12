@@ -13,6 +13,20 @@
         <p>Please verify your identity with email address</p>
       </div>
     </div>
+    <div class="error-container" v-if="error">
+      <div class="icon-container">
+        <i class="bi bi-exclamation-circle-fill"></i>
+      </div>
+      <div class="text-container">
+        <span class="incorrect-text">
+          Incorrect Member No. Or Verification Question Answer</span
+        >
+        <br />
+        Sorry, we couldn't find the information that match our records. Try
+        again or contact our customer service to help you <br />
+        <span class="error-note">Call Us at +852 2410 1952</span>
+      </div>
+    </div>
     <div class="email-form-container">
       <el-form
         :model="data.user"
@@ -22,21 +36,14 @@
       >
         <div class="row">
           <template label="scope">
-            <label class="overwrite-label-email"
-              ><span class="required">*</span> Email Address
-            </label>
+            <label class="overwrite-label-email"> Email Address </label>
           </template>
           <div class="col">
             <el-form-item prop="email">
               <el-input
-                v-model="data.user.method"
+                v-model="data.user.answer"
                 class="overwrite-form-item-email"
               ></el-input>
-              <template label="scope">
-                <span class="error-message" v-if="error">{{
-                  error_message.email
-                }}</span>
-              </template>
             </el-form-item>
           </div>
         </div>

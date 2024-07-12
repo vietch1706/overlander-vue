@@ -29,6 +29,28 @@
     }
   }
 
+  .error-container {
+    background: #f9e8e8;
+    padding: 1rem;
+    font-size: 18px;
+    display: flex;
+    .icon-container {
+      color: #c51c1c;
+      font-weight: 600;
+    }
+    .text-container {
+      padding-left: 15px;
+      .incorrect-text {
+        color: #c51c1c;
+        font-weight: 600;
+      }
+      .error-note {
+        color: #0b1d35;
+        font-weight: 600;
+        text-decoration: underline;
+      }
+    }
+  }
   .email-form-container {
     .el-form-item__content {
       line-height: unset;
@@ -60,13 +82,6 @@
       .el-textarea__inner:focus {
         border-bottom: #78c147 solid 4px;
       }
-    }
-
-    .error-message {
-      font-weight: 600;
-      font-size: 12px;
-      line-height: 12px;
-      color: #ee1b1b;
     }
 
     .el-button {

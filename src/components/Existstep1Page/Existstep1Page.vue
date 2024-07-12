@@ -37,14 +37,12 @@ import ButtonComponent from "./ButtonComponent/ButtonComponent.vue";
 import PhoneComponent from "./PhoneComponent/PhoneComponent.vue";
 import EmailComponent from "./EmailComponent/EmailComponent.vue";
 import MemberComponent from "./MemberComponent/MemberComponent.vue";
-import QuestionComponent from "./QuestionComponent/QuestionComponent.vue";
 export default {
   components: {
     ButtonComponent,
     PhoneComponent,
     EmailComponent,
     MemberComponent,
-    QuestionComponent,
   },
   data() {
     return {
@@ -54,6 +52,7 @@ export default {
       CurrentComponent: "ButtonComponent",
       data: {
         method: "",
+        anwser: "",
         previous: "",
       },
       questions: {
@@ -79,11 +78,6 @@ export default {
     },
     pushToButtonComponent() {
       this.CurrentComponent = "ButtonComponent";
-    },
-    pushToQuestionComponent(data) {
-      this.CurrentComponent = "QuestionComponent";
-      this.data.previous = data.previous;
-      this.data.method = data.method;
     },
   },
 };

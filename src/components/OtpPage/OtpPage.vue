@@ -98,6 +98,16 @@ export default {
             message: result.data.message,
             type: "success",
           });
+          if (this.$route.params.current === "existing") {
+            this.$router.push({
+              name: "existMemberPage",
+              params: {
+                email: this.data.user.answer,
+                previous: this.$parent.questions.EMAIL_QUESTION,
+                method: "email",
+              },
+            });
+          }
           this.pushSuccessPage(this.$route.params.previous);
         })
         .catch((error) => {
