@@ -18,23 +18,13 @@ const router = new VueRouter({
       name: "registerPage",
     },
     {
-      path: "/exist-member",
-      redirect: "/exist-member/step-1",
-    },
-    {
-      path: "/exist-member/step-1",
+      path: "/exist-member/:name",
       component: () =>
-        import("../components/Existstep1Page/Existstep1Page.vue"),
-      meta: { text: "Existstep1Page" },
-      name: "existStep1Page",
+        import("../components/ExistsmemberPage/ExistsmemberPage.vue"),
+      meta: { text: "ExistsmemberPage" },
+      name: "existsMemberPage",
     },
-    {
-      path: "/exist-member/step-2",
-      component: () =>
-        import("../components/Existstep2Page/Existstep2Page.vue"),
-      meta: { text: "Existstep2Page" },
-      name: "existStep2Page",
-    },
+
     {
       path: "/successful",
       component: () => import("../components/SuccessPage/SuccessPage.vue"),
@@ -60,7 +50,7 @@ const router = new VueRouter({
       name: "forgetPage",
     },
     {
-      path: "/phone-verification",
+      path: "/email-verification",
       component: () => import("../components/OtpPage/OtpPage.vue"),
       meta: { text: "OtpPage" },
       name: "otpPage",

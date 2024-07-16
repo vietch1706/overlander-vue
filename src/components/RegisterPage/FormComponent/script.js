@@ -1,4 +1,5 @@
 import axios from "axios";
+
 export default {
   data() {
     return {
@@ -13,8 +14,10 @@ export default {
       },
       data: {
         country: [],
-        phoneCode: "",
-        phoneNumber: "",
+        phone: {
+          phoneCode: "",
+          phoneNumber: "",
+        },
         interests: [],
         image: "",
         user: {
@@ -87,9 +90,10 @@ export default {
         if (valid) {
           this.error_message.phone = "";
           this.error_message.email = "";
+          console.log(this.data.phone);
           this.data.user.phone =
-            this.data.phoneCode.toString().replace(/\s/g, "") +
-            this.data.phoneNumber.toString();
+            this.data.phone.phoneCode.toString() +
+            this.data.phone.phoneNumber.toString();
           console.log(this.data.user);
           axios
             .post("/users/user/check-exist", {
@@ -104,6 +108,8 @@ export default {
               } else {
                 this.error_message.phone = "";
                 this.error_message.email = "";
+                this.$store.state.user = this.data.user;
+                this.$store.state.phone = this.data.phone;
                 this.postRegister();
               }
             })
@@ -127,13 +133,11 @@ export default {
     postRegister() {
       axios
         .post("/users/user/register", this.data.user)
-        .then((result) => {
+        .then(() => {
           console.log("success");
-          this.$notify({
-            title: "Save Success",
-            message: result.data.message,
-            type: "success",
-          });
+          this.data.user.password = "";
+          this.$store.commit("getUser", this.data.user);
+          this.$store.commit("getPhone", this.data.phone);
           this.postSendCode();
         })
         .catch((error) => {
@@ -151,16 +155,14 @@ export default {
           method: "Register",
         })
         .then((result) => {
-          console.log(result);
+          this.$notify({
+            title: "Save Success",
+            message: result.data.message,
+            type: "success",
+          });
           this.$router.push({
             name: "otpPage",
             params: {
-              first_name: this.data.user.first_name,
-              last_name: this.data.user.last_name,
-              phoneCode: this.data.phoneCode,
-              phoneNumber: this.data.phoneNumber,
-              country: this.data.user.country,
-              email: this.data.user.email,
               previous: "registerPage",
             },
           });
@@ -176,7 +178,6 @@ export default {
       axios
         .get("general/phonecode/get")
         .then((result) => {
-          console.log(result.data);
           this.data.country = result.data;
           for (let keys in result.data) {
             this.data.country[keys]["code"] = "+" + result.data[keys]["code"];
@@ -199,13 +200,9 @@ export default {
         });
     },
     getAllDataUser() {
-      if (this.data.user["first_name"] === "") {
-        this.data.user.first_name = this.$route.params.first_name;
-        this.data.user.last_name = this.$route.params.last_name;
-        this.data.phoneCode = this.$route.params.phoneCode;
-        this.data.phoneNumber = this.$route.params.phoneNumber;
-        this.data.user.country = this.$route.params.country;
-        this.data.user.email = this.$route.params.email;
+      if (this.$store.state.user !== null) {
+        this.data.user = this.$store.state.user;
+        this.data.phone = this.$store.state.phone;
       }
     },
     showErrorMessage() {

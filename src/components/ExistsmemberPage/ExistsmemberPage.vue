@@ -37,12 +37,14 @@ import ButtonComponent from "./ButtonComponent/ButtonComponent.vue";
 import PhoneComponent from "./PhoneComponent/PhoneComponent.vue";
 import EmailComponent from "./EmailComponent/EmailComponent.vue";
 import MemberComponent from "./MemberComponent/MemberComponent.vue";
+import QuestionComponent from "./QuestionComponent/QuestionComponent.vue";
 export default {
   components: {
     ButtonComponent,
     PhoneComponent,
     EmailComponent,
     MemberComponent,
+    QuestionComponent,
   },
   data() {
     return {
@@ -67,6 +69,11 @@ export default {
     };
   },
   methods: {
+    checkStep() {
+      if (this.$route.params.name === "step-2") {
+        this.CurrentComponent = "QuestionComponent";
+      }
+    },
     pushToPhoneComponent() {
       this.CurrentComponent = "PhoneComponent";
     },
@@ -79,6 +86,9 @@ export default {
     pushToButtonComponent() {
       this.CurrentComponent = "ButtonComponent";
     },
+  },
+  async mounted() {
+    this.checkStep();
   },
 };
 </script>

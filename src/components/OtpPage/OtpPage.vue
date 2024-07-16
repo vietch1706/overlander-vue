@@ -94,17 +94,17 @@ export default {
         .then((result) => {
           console.log("success");
           this.$notify({
-            title: "Save Success",
             message: result.data.message,
-            type: "success",
           });
           if (this.$route.params.current === "existing") {
+            console.log(this.$route.params);
             this.$router.push({
-              name: "existMemberPage",
+              path: "exist-member/step-2",
               params: {
                 email: this.data.user.answer,
-                previous: this.$parent.questions.EMAIL_QUESTION,
+                previous: this.$route.params.previous,
                 method: "email",
+                previousPage: "otpPage",
               },
             });
           }
@@ -119,7 +119,8 @@ export default {
         });
     },
     getEmailAddress() {
-      this.data.user.email = this.$route.params.email;
+      this.data.user.email = this.$store.state.user.email;
+      console.log(this.$route.params);
     },
     countdown() {
       if (this.started) {
@@ -164,7 +165,6 @@ export default {
       } else if (previousPage === "registerPage") {
         this.$router.push({
           name: "registerPage",
-          params: this.$route.params,
         });
       } else if (previousPage === "existMemberPage")
         this.$router.push({

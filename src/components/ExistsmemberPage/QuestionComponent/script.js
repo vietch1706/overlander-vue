@@ -6,6 +6,7 @@ export default {
         questions: [],
         phoneCode: null,
         phoneNumber: "",
+        previousQuestion: "",
         user: {
           question: "",
           answer: "",
@@ -42,10 +43,18 @@ export default {
       this.$refs[formName].resetFields();
     },
     getAllVerificationQuestions() {
+      if (this.$route.params.previousPage === "otpPage") {
+        this.data.previousQuestion = this.$route.params.previous;
+        this.data.user.method = this.$route.params.method;
+        this.data.user.answer = this.$route.params.answer;
+      } else {
+        this.data.previousQuestion = this.$parent.data.previous;
+      }
+      console.log(this.data.previousQuestion);
       axios
         .get("/users/existing-user/get-questions", {
           params: {
-            previous: this.$parent.data.previous,
+            previous: this.data.previousQuestion,
           },
         })
         .then((result) => {

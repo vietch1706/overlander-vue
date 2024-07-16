@@ -45,13 +45,14 @@ export default {
                 });
                 // this.pushToQuestionComponent(this.data.user.previous);
               } else {
-                this.error = true;
+                throw new Error("Server die");
               }
             })
             .catch((error) => {
+              this.error = true;
               this.$notify.error({
                 title: "Error",
-                message: error.data.message,
+                message: error,
               });
             });
         } else {

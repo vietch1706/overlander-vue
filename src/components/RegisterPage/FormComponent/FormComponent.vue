@@ -44,7 +44,7 @@
         <div class="col-sm-4 pt-2">
           <el-form-item prop="phoneCode">
             <el-select
-              v-model="data.phoneCode"
+              v-model="data.phone.phoneCode"
               placeholder="Select"
               class="overwrite-form-item-register"
             >
@@ -69,7 +69,7 @@
         <div class="col-sm-8 pt-2">
           <el-form-item prop="phoneNumber">
             <el-input
-              v-model="data.phoneNumber"
+              v-model="data.phone.phoneNumber"
               type="number"
               class="overwrite-form-item-register"
             ></el-input>

@@ -12,7 +12,7 @@
             Already a member? Transfer your point and account <br />
             information now
           </p>
-          <el-button @click="$router.push('/exist-member-register')"
+          <el-button @click="$router.push('/exist-member/step-1')"
             >Transfer Extisting Account</el-button
           >
         </div>
