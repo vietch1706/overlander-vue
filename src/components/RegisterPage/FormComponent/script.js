@@ -1,5 +1,4 @@
 import axios from "axios";
-
 export default {
   data() {
     return {
@@ -108,8 +107,6 @@ export default {
               } else {
                 this.error_message.phone = "";
                 this.error_message.email = "";
-                this.$store.state.user = this.data.user;
-                this.$store.state.phone = this.data.phone;
                 this.postRegister();
               }
             })
@@ -136,8 +133,8 @@ export default {
         .then(() => {
           console.log("success");
           this.data.user.password = "";
-          this.$store.commit("getUser", this.data.user);
-          this.$store.commit("getPhone", this.data.phone);
+          this.$store.dispatch("user", this.data.user);
+          this.$store.dispatch("phone", this.data.phone);
           this.postSendCode();
         })
         .catch((error) => {
@@ -161,9 +158,9 @@ export default {
             type: "success",
           });
           this.$router.push({
-            name: "otpPage",
-            params: {
-              previous: "registerPage",
+            path: `/email-verification`,
+            query: {
+              previous: `register`,
             },
           });
         })
@@ -215,9 +212,9 @@ export default {
     },
   },
   async mounted() {
-    this.getAllPhoneCodes();
-    this.getAllDataUser();
+    await this.getAllPhoneCodes();
+    await this.getAllInterests();
+    await this.getAllDataUser();
     this.showErrorMessage();
-    this.getAllInterests();
   },
 };

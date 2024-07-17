@@ -35,12 +35,11 @@ export default {
                   type: "success",
                 });
                 console.log(this.data.user);
+                this.$store.dispatch("resetpassword", this.data.user);
                 this.$router.push({
-                  name: "otpPage",
-                  params: {
-                    email: this.data.user.answer,
+                  path: `/email-verification`,
+                  query: {
                     current: "existing",
-                    previous: this.$parent.questions.EMAIL_QUESTION,
                   },
                 });
                 // this.pushToQuestionComponent(this.data.user.previous);

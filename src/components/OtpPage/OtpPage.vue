@@ -21,7 +21,7 @@
             we have sent to
             <span> {{ this.data.user.email }}</span> <br />
           </p>
-          <p class="back-page" @click="backPage($route.params.previous)">
+          <p class="back-page" @click="backPage($route.query.previous)">
             Re-enter your email address.
           </p>
         </div>
@@ -94,10 +94,12 @@ export default {
         .then((result) => {
           console.log("success");
           this.$notify({
+            title: "Success",
             message: result.data.message,
+            type: "success",
           });
-          if (this.$route.params.current === "existing") {
-            console.log(this.$route.params);
+          if (this.$route.query.current === "existing") {
+            console.log("hehe" + this.$store.state.resetpassword);
             this.$router.push({
               path: "exist-member/step-2",
               params: {
@@ -108,7 +110,7 @@ export default {
               },
             });
           }
-          this.pushSuccessPage(this.$route.params.previous);
+          this.pushSuccessPage(this.$route.query.previous);
         })
         .catch((error) => {
           console.log("error!");
@@ -119,8 +121,12 @@ export default {
         });
     },
     getEmailAddress() {
-      this.data.user.email = this.$store.state.user.email;
-      console.log(this.$route.params);
+      console.log("hehe" + this.$store.state.resetpassword.answer);
+      if (this.$route.query.current === "existing") {
+        this.data.user.email = this.$store.state.resetpassword.answer;
+      } else {
+        this.data.user.email = this.$store.state.user.email;
+      }
     },
     countdown() {
       if (this.started) {
@@ -137,14 +143,11 @@ export default {
       }
     },
     pushSuccessPage(previousPage) {
-      if (previousPage === "forgetPage") {
+      if (previousPage === "forget") {
         this.$router.push({
-          name: "changePassPage",
-          params: {
-            email: this.data.user.email,
-          },
+          path: `/new-password`,
         });
-      } else if (previousPage === "registerPage") {
+      } else if (previousPage === "register") {
         this.$router.push({
           name: "successPage",
           params: {
@@ -158,13 +161,13 @@ export default {
     },
     backPage(previousPage) {
       console.log(previousPage);
-      if (previousPage === "forgetPage") {
+      if (previousPage === "forget") {
         this.$router.push({
-          name: "forgetPage",
+          path: `/reset-password`,
         });
-      } else if (previousPage === "registerPage") {
+      } else if (previousPage === "register") {
         this.$router.push({
-          name: "registerPage",
+          path: `/register`,
         });
       } else if (previousPage === "existMemberPage")
         this.$router.push({

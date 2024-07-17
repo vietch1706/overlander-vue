@@ -10,7 +10,7 @@
         <template label="scope">
           <label class="overwrite-label-password">Email Address </label>
         </template>
-        <div class="col">
+        <div class="col pt-2">
           <el-form-item prop="password">
             <el-input
               v-model="data.user.email"

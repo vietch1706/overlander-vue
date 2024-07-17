@@ -32,11 +32,11 @@ export default {
                   })
                   .then((result) => {
                     console.log(result);
+                    this.$store.dispatch("user", this.data.user);
                     this.$router.push({
-                      name: "otpPage",
-                      params: {
-                        email: this.data.user.email,
-                        previous: "forgetPage",
+                      path: `/email-verification`,
+                      query: {
+                        previous: "forget",
                       },
                     });
                   })
@@ -55,6 +55,7 @@ export default {
               this.$notify.error({
                 title: "Error",
                 message: "hehe",
+                type: "error",
               });
               console.log(error);
             });
