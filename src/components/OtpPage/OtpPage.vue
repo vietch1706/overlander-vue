@@ -88,7 +88,7 @@ export default {
     submitUser() {
       axios
         .post("/users/user/verify-code", {
-          email: this.data.user.email,
+          user: this.data.user.email,
           code: this.data.user.code,
         })
         .then((result) => {

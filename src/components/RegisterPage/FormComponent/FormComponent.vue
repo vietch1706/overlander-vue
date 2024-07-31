@@ -42,9 +42,9 @@
           </label>
         </template>
         <div class="col-sm-4 pt-2">
-          <el-form-item prop="phoneCode">
+          <el-form-item prop="phone_area_code">
             <el-select
-              v-model="data.phone.phoneCode"
+              v-model="data.user.phone_area_code"
               placeholder="Select"
               class="overwrite-form-item-register"
             >
@@ -67,9 +67,9 @@
           </el-form-item>
         </div>
         <div class="col-sm-8 pt-2">
-          <el-form-item prop="phoneNumber">
+          <el-form-item prop="phone">
             <el-input
-              v-model="data.phone.phoneNumber"
+              v-model="data.user.phone"
               type="number"
               class="overwrite-form-item-register"
             ></el-input>
@@ -235,7 +235,7 @@
               </label>
             </template>
             <el-select
-              v-model="data.user.interests"
+              v-model="data.choose_interests"
               filterable
               class="overwrite-form-item-register"
               placeholder="Select your interests"
