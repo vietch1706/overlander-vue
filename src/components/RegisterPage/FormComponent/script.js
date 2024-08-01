@@ -14,7 +14,7 @@ export default {
       data: {
         country: [],
         interests: [],
-        choose_interest: [],
+        choose_interests: [],
         image: "",
         user: {
           first_name: "",
@@ -91,10 +91,15 @@ export default {
           this.data.user.password_confirmation = this.data.user.password;
           this.data.user.phone_area_code =
             this.data.user.phone_area_code.replace("+", "");
+          console.log("this.data.choose_interests");
+          console.log(this.data.choose_interests);
+          this.$store.dispatch("interest", this.data.choose_interests);
+          console.log("store");
+          console.log(this.$store.state.interest);
           this.getInterestsId();
           console.log(this.data.user);
           axios
-            .post("/user/check-exist", {
+            .post("/user/check-exists", {
               email: this.data.user.email,
               phone: this.data.user.phone_area_code + this.data.user.phone,
             })
@@ -146,7 +151,7 @@ export default {
     },
     postSendCode() {
       axios
-        .post("/user/send-verification-codes", {
+        .post("/user/send-verification-code", {
           user: this.data.user.email,
           method: "Register",
         })
@@ -157,8 +162,8 @@ export default {
             type: "success",
           });
           this.$router.push({
-            path: `/email-verification`,
-            query: {
+            name: "otpPage",
+            params: {
               previous: `register`,
             },
           });
@@ -182,7 +187,10 @@ export default {
           }
         }
       }
+      console.log(this.data.choose_interests);
       this.data.user.interests = this.data.choose_interests.toString();
+
+      console.log(this.data.user.interests);
     },
     getAllPhoneCodes() {
       axios
@@ -213,7 +221,9 @@ export default {
     getAllDataUser() {
       if (this.$store.state.user !== null) {
         this.data.user = this.$store.state.user;
-        this.data.phone = this.$store.state.phone;
+        this.data.choose_interests = new Array(this.$store.state.interest);
+        console.log("get data");
+        console.log(this.data.choose_interests);
       }
     },
     showErrorMessage() {

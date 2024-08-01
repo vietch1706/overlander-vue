@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     user: null,
     exist: null,
-    phone: null,
+    interest: null,
     resetpassword: null,
   },
   getters: {},
@@ -18,8 +18,8 @@ export default new Vuex.Store({
     exist(state, exist) {
       state.exist = exist;
     },
-    phone(state, phone) {
-      state.phone = phone;
+    interest(state, interest) {
+      state.interest = interest;
     },
     resetpassword(state, resetpassword) {
       state.phone = resetpassword;
@@ -32,8 +32,8 @@ export default new Vuex.Store({
     exist(context, exist) {
       context.commit("exist", exist);
     },
-    phone(context, phone) {
-      context.commit("phone", phone);
+    interest(context, interest) {
+      context.commit("interest", interest);
     },
     resetpassword(context, resetpassword) {
       context.commit("resetpassword", resetpassword);

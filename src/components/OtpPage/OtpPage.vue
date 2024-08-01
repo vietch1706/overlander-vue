@@ -21,7 +21,7 @@
             we have sent to
             <span> {{ this.data.user.email }}</span> <br />
           </p>
-          <p class="back-page" @click="backPage($route.query.previous)">
+          <p class="back-page" @click="backPage($route.params.previous)">
             Re-enter your email address.
           </p>
         </div>
@@ -98,7 +98,7 @@ export default {
             message: result.data.message,
             type: "success",
           });
-          if (this.$route.query.current === "existing") {
+          if (this.$route.params.current === "existing") {
             console.log("hehe" + this.$store.state.resetpassword);
             this.$router.push({
               path: "exist-member/step-2",
@@ -110,7 +110,7 @@ export default {
               },
             });
           }
-          this.pushSuccessPage(this.$route.query.previous);
+          this.pushSuccessPage(this.$route.params.previous);
         })
         .catch((error) => {
           console.log("error!");
@@ -121,9 +121,9 @@ export default {
         });
     },
     getEmailAddress() {
-      console.log("hehe" + this.$store.state.resetpassword.answer);
-      if (this.$route.query.current === "existing") {
+      if (this.$route.params.previous === "existing") {
         this.data.user.email = this.$store.state.resetpassword.answer;
+        console.log("hehe" + this.$store.state.resetpassword.answer);
       } else {
         this.data.user.email = this.$store.state.user.email;
       }
