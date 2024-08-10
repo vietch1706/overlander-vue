@@ -58,6 +58,14 @@ export default {
   components: {
     FormComponent,
   },
+  beforeRouteEnter(to, from, next) {
+    console.log("Here I Am");
+    if (from.name === "otpPage") {
+      this.data.user = this.$store.getters.getUser;
+    }
+    // console.log(this.data.user);
+    next();
+  },
   data() {
     return {
       url: "http://anywhere.com",

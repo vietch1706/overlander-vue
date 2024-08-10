@@ -55,7 +55,6 @@ export default {
   },
   methods: {
     getDataUser() {
-      console.log(this.$route.params);
       this.data.title = this.$route.params.title;
       this.data.greeting = this.$route.params.greeting;
       this.data.note = this.$route.params.note;

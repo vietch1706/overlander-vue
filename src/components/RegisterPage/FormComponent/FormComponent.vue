@@ -235,7 +235,7 @@
               </label>
             </template>
             <el-select
-              v-model="data.choose_interests"
+              v-model="data.user.interests"
               filterable
               class="overwrite-form-item-register"
               placeholder="Select your interests"
@@ -247,7 +247,7 @@
               <el-option
                 v-for="value in data.interests"
                 :key="value.id"
-                :value="value.name"
+                :value="value.id"
                 :label="value.name"
               >
               </el-option>

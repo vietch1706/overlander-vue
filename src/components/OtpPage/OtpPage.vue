@@ -95,11 +95,10 @@ export default {
           console.log("success");
           this.$notify({
             title: "Success",
-            message: result.data.message,
+            message: result.data.data.message,
             type: "success",
           });
           if (this.$route.params.current === "existing") {
-            console.log("hehe" + this.$store.state.resetpassword);
             this.$router.push({
               path: "exist-member/step-2",
               params: {
@@ -121,12 +120,7 @@ export default {
         });
     },
     getEmailAddress() {
-      if (this.$route.params.previous === "existing") {
-        this.data.user.email = this.$store.state.resetpassword.answer;
-        console.log("hehe" + this.$store.state.resetpassword.answer);
-      } else {
-        this.data.user.email = this.$store.state.user.email;
-      }
+      this.data.user.email = this.$store.getters.getUser.email;
     },
     countdown() {
       if (this.started) {
@@ -167,7 +161,7 @@ export default {
         });
       } else if (previousPage === "register") {
         this.$router.push({
-          path: `/register`,
+          name: `registerPage`,
         });
       } else if (previousPage === "existMemberPage")
         this.$router.push({

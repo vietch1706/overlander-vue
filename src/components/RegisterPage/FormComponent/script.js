@@ -14,7 +14,6 @@ export default {
       data: {
         country: [],
         interests: [],
-        choose_interests: [],
         image: "",
         user: {
           first_name: "",
@@ -91,34 +90,40 @@ export default {
           this.data.user.password_confirmation = this.data.user.password;
           this.data.user.phone_area_code =
             this.data.user.phone_area_code.replace("+", "");
-          console.log("this.data.choose_interests");
-          console.log(this.data.choose_interests);
-          this.$store.dispatch("interest", this.data.choose_interests);
-          console.log("store");
-          console.log(this.$store.state.interest);
-          this.getInterestsId();
-          console.log(this.data.user);
+          this.$store.dispatch("user", this.data.user);
+          this.data.user.interests = this.data.user.interests.toString();
           axios
-            .post("/user/check-exists", {
-              email: this.data.user.email,
-              phone: this.data.user.phone_area_code + this.data.user.phone,
-            })
-            .then((result) => {
-              this.showErrorMessage();
-              if (result.data.data !== undefined) {
-                this.error_message.phone = result.data.data.phone;
-                this.error_message.email = result.data.data.email;
-              } else {
-                this.error_message.phone = "";
-                this.error_message.email = "";
-                this.postRegister();
-              }
+            .post("/user/register", this.data.user)
+            .then(() => {
+              this.error = false;
+              console.log("success");
+              console.log(this.data.message);
+              this.data.user.password = "";
+              this.postSendCode();
             })
             .catch((error) => {
               console.log("error!");
+              if (
+                error.response.data.message.search("email") > 0 &&
+                error.response.data.message.search("phone") < 0
+              ) {
+                this.error_message.email = error.response.data.message;
+                this.error = true;
+              } else if (
+                error.response.data.message.search("phone") > 0 &&
+                error.response.data.message.search("email") < 0
+              ) {
+                this.error_message.phone = error.response.data.message;
+                this.error = true;
+              } else {
+                this.error_message.phone =
+                  error.response.data.message.split("|")[0];
+                this.error_message.email =
+                  error.response.data.message.split("|")[1];
+                this.error = true;
+              }
               this.$notify.error({
                 title: "Error",
-                message: "Exist information!",
               });
               console.log(error);
             });
@@ -130,24 +135,6 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
-    },
-    postRegister() {
-      axios
-        .post("/user/register", this.data.user)
-        .then(() => {
-          console.log("success");
-          this.data.user.password = "";
-          this.$store.dispatch("user", this.data.user);
-          this.postSendCode();
-        })
-        .catch((error) => {
-          console.log("error!");
-          this.$notify.error({
-            title: "Error",
-            message: "Registration failed! Please try again.",
-          });
-          console.log(error);
-        });
     },
     postSendCode() {
       axios
@@ -175,23 +162,6 @@ export default {
           console.log(error);
         });
     },
-    getInterestsId() {
-      for (const interest in this.data.choose_interests) {
-        for (const interestId in this.data.interests) {
-          if (
-            this.data.choose_interests[interest] ===
-            this.data.interests[interestId].name
-          ) {
-            this.data.choose_interests[interest] =
-              this.data.interests[interestId].id;
-          }
-        }
-      }
-      console.log(this.data.choose_interests);
-      this.data.user.interests = this.data.choose_interests.toString();
-
-      console.log(this.data.user.interests);
-    },
     getAllPhoneCodes() {
       axios
         .get("general/country/get")
@@ -218,27 +188,15 @@ export default {
           console.log(error);
         });
     },
-    getAllDataUser() {
-      if (this.$store.state.user !== null) {
-        this.data.user = this.$store.state.user;
-        this.data.choose_interests = new Array(this.$store.state.interest);
-        console.log("get data");
-        console.log(this.data.choose_interests);
-      }
-    },
-    showErrorMessage() {
-      if (this.error_message.phone === "" && this.error_message.mail === "") {
-        this.error = false;
-      }
-      if (this.error_message.phone !== "" || this.error_message.mail !== "") {
-        this.error = true;
-      }
-    },
+    // getAllDataUser() {
+    //   if (this.$store.state.user !== null) {
+    //     this.data.user = this.$store.getters.getUser;
+    //   }
+    // },
   },
   async mounted() {
     await this.getAllPhoneCodes();
     await this.getAllInterests();
-    await this.getAllDataUser();
-    this.showErrorMessage();
+    // await this.getAllDataUser();
   },
 };
