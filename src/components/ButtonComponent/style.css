@@ -1,0 +1,46 @@
+.button-container {
+  .text-field {
+    .top-text {
+      display: flex;
+      .transfer-field {
+        color: #0b1d35;
+        font-weight: 800;
+        font-size: 36px;
+        p {
+          background-image: linear-gradient(#78c147 0 0);
+          background-position: bottom left;
+          background-size: 18% 5px;
+          background-repeat: no-repeat;
+          padding-bottom: 5px;
+        }
+      }
+      .top-img {
+        align-self: center;
+        padding: 0 0 1rem 1rem;
+        width: 20%;
+        img {
+          width: 25%;
+        }
+      }
+    }
+    .note-text {
+      font-weight: 400;
+      font-size: 16px;
+    }
+  }
+  .el-button {
+    width: 580px;
+    border: 2px solid #78c147;
+    color: #4b9916;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    span {
+      a {
+        color: #4b9916;
+        padding: 0 150px;
+        margin: unset;
+      }
+    }
+  }
+}

@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import HeaderPage from "./components/HeaderPage/HeaderPage.vue";
-import FooterPage from "./components/FooterPage/FooterPage.vue";
+import HeaderPage from "@/pages/HeaderPage/HeaderPage.vue";
+import FooterPage from "@/pages/FooterPage/FooterPage.vue";
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 export default {
   name: "app",

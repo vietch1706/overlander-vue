@@ -1,0 +1,130 @@
+.full-form-container {
+  .el-form-item__content {
+    line-height: unset;
+  }
+  padding: 0 3.5rem;
+  .overwrite-label {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 18px;
+    color: #3c4a5d;
+    .optional {
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 18px;
+      color: #6d7786;
+    }
+  }
+  .error-message {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 12px;
+    color: #ee1b1b;
+  }
+  .inside-text {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    background: #e7e9eb;
+    border-color: #ced2d7;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 18px;
+    color: #3c4a5d;
+  }
+
+  .overwrite-label-note {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 12px;
+    color: #6d7786;
+    a {
+      color: #6d7786;
+      font-weight: 400;
+      text-decoration: underline solid #6d7786 1.5px;
+    }
+  }
+  .overwrite-form-item {
+    width: 100%;
+    .el-input__inner,
+    .el-textarea__inner {
+      padding: 0.5rem 0.75rem;
+      background: #e7e9eb;
+      gap: 12px;
+      align-self: stretch;
+      border-color: #ced2d7;
+      caret-color: #78c147;
+    }
+    .el-input__inner:focus,
+    .el-textarea__inner:focus {
+      border-bottom: #78c147 solid 4px;
+    }
+  }
+
+  .date-picker {
+    .el-input__inner {
+      padding: 0.5rem 2rem;
+    }
+  }
+  .overwrite-radio-item {
+    background: #e7e9eb;
+    border-color: #ced2d7;
+    color: #0b1d35;
+  }
+
+  .check-box {
+    .el-checkbox {
+      .el-checkbox__label {
+        color: #3c4a5d;
+        font-size: 16px;
+      }
+      .el-checkbox__inner {
+        width: 24px;
+        height: 24px;
+        border-color: #ced2d7;
+        transition: none;
+      }
+      .is-checked {
+        .el-checkbox__inner {
+          background-color: #78c147;
+        }
+        .el-checkbox__inner::after {
+          border-bottom: 4px solid #fff;
+          border-right: 4px solid #fff;
+          transform: rotate(45deg);
+          font-size: 16px;
+          width: 5px;
+          height: 10px;
+          left: 7px;
+          bottom: 5px;
+        }
+      }
+    }
+  }
+  .el-button {
+    background: #a1d47e;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+  }
+  .bottom-container {
+    .bottom-btn {
+      padding-top: 15px;
+      a {
+        padding-right: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #0b1d35;
+        cursor: pointer;
+      }
+    }
+    p {
+      font-size: 10px;
+      font-weight: 400;
+      color: #0b1d35;
+    }
+  }
+}

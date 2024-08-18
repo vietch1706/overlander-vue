@@ -7,7 +7,7 @@ import store from "./store/index.js";
 import "./axios";
 import vuetify from "./plugins/vuetify";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import locale from "element-ui/lib/locale/lang/vi.js";
+import locale from "element-ui/lib/locale/lang/en";
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI, { locale });

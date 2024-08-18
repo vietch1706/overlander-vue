@@ -12,74 +12,73 @@ const router = new VueRouter({
       name: "homePage",
     },
     {
-      path: "/register",
-      component: () => import("../components/RegisterPage/RegisterPage.vue"),
+      path: "/registration",
+      component: () => import("@/pages/RegisterPage/RegisterPage.vue"),
       meta: { text: "RegisterPage" },
       name: "registerPage",
     },
     {
-      path: "/exist-member/:name",
-      component: () =>
-        import("../components/ExistsmemberPage/ExistsmemberPage.vue"),
-      meta: { text: "ExistsmemberPage" },
+      path: "/transfer-existing-member",
+      component: () => import("@/pages/ExistsMemberPage/ExistsMemberPage.vue"),
+      meta: { text: "ExistsMemberPage" },
       name: "existsMemberPage",
     },
-
+    {
+      path: "/two-step-authenication-one",
+      component: () => import("@/pages/AuthenOnePage/AuthenOnePage.vue"),
+      meta: { text: "AuthenOnePage" },
+      name: "authenOnePage",
+    },
+    {
+      path: "/two-step-authenication-two",
+      component: () => import("@/pages/AuthenTwoPage/AuthenTwoPage.vue"),
+      meta: { text: "AuthenTwoPage" },
+      name: "authenTwoPage",
+    },
     {
       path: "/successful",
-      component: () => import("../components/SuccessPage/SuccessPage.vue"),
+      component: () => import("@/pages/SuccessPage/SuccessPage.vue"),
       meta: { text: "SuccessPage" },
       name: "successPage",
     },
     {
-      path: "/update-member",
-      component: () => import("../components/UpdatePage/UpdatePage.vue"),
+      path: "/update-existing-member",
+      component: () => import("@/pages/UpdatePage/UpdatePage.vue"),
       meta: { text: "UpdatePage" },
       name: "updatePage",
     },
     {
       path: "/login",
-      component: () => import("../components/LoginPage/LoginPage.vue"),
+      component: () => import("@/pages/LoginPage/LoginPage.vue"),
       meta: { text: "LoginPage" },
       name: "loginPage",
     },
     {
-      path: "/reset-password",
-      component: () => import("../components/ForgetPage/ForgetPage.vue"),
+      path: "forget-password",
+      component: () => import("@/pages/ForgetPage/ForgetPage.vue"),
       meta: { text: "ForgetPage" },
       name: "forgetPage",
     },
     {
       path: "/email-verification",
-      component: () => import("../components/OtpPage/OtpPage.vue"),
+      component: () => import("@/pages/OtpPage/OtpPage.vue"),
       meta: { text: "OtpPage" },
       name: "otpPage",
     },
     {
-      path: "/new-password",
-      component: () =>
-        import("../components/ChangepassPage/ChangepassPage.vue"),
-      meta: { text: "ChangepassPage" },
-      name: "changePassPage",
-    },
-    {
-      path: "/terms-and-conditions",
-      component: () => import("../components/SupportivePage/T&CPage.vue"),
-      meta: { text: "T&CPage" },
-      name: "t&cPage",
-    },
-    {
-      path: "/privacy-policy",
-      component: () => import("../components/SupportivePage/PolicyPage.vue"),
-      meta: { text: "PolicyPage" },
-      name: "policyPage",
-    },
-    {
-      path: "/disclaimer",
-      component: () =>
-        import("../components/SupportivePage/DisclaimerPage.vue"),
-      meta: { text: "DisclaimerPage" },
-      name: "disclaimerPage",
+      path: "/documentation",
+      component: () => import("@/pages/SupportivePage/SupportivePage.vue"),
+      meta: { text: "SupportivePage" },
+      name: "supportivePage",
+      children: [
+        {
+          path: ":name",
+          component: () =>
+            import("@/components/SupportiveComponent/SupportiveComponent.vue"),
+          meta: { text: "SupportiveComponent" },
+          name: "supportiveComponent",
+        },
+      ],
     },
   ],
 });

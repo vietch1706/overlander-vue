@@ -1,0 +1,40 @@
+.transfer-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  font-size: 18px;
+  font-weight: 400;
+  .left {
+    flex-basis: 40%;
+  }
+  .right {
+    flex-basis: 60%;
+    padding-top: 20px;
+  }
+  .transfer-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    .button-wrapper {
+      padding: 0 7rem;
+      align-self: center;
+    }
+    .bottom-container {
+      padding: 400px 0 0 7rem;
+      .bottom-btn {
+        a {
+          padding-right: 20px;
+          font-size: 12px;
+          font-weight: 600;
+          color: #0b1d35;
+          cursor: pointer;
+        }
+      }
+      p {
+        font-size: 10px;
+        font-weight: 400;
+        color: #0b1d35;
+      }
+    }
+  }
+}

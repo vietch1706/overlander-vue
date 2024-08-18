@@ -1,0 +1,49 @@
+.authenone-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  font-size: 18px;
+  font-weight: 400;
+  .left {
+    flex-basis: 40%;
+  }
+  .right {
+    padding: 0 3.5rem;
+    flex-basis: 60%;
+    padding-top: 20px;
+  }
+  .authenone-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .text-field {
+      .top-text {
+        display: flex;
+        .transfer-field {
+          color: #0b1d35;
+          font-weight: 800;
+          font-size: 36px;
+          p {
+            background-image: linear-gradient(#78c147 0 0);
+            background-position: bottom left;
+            background-size: 18% 5px;
+            background-repeat: no-repeat;
+            padding-bottom: 5px;
+          }
+        }
+        .top-img {
+          align-self: center;
+          padding: 0 0 1rem 1rem;
+          width: 20%;
+          img {
+            width: 25%;
+          }
+        }
+      }
+      .note-text {
+        font-weight: 400;
+        font-size: 16px;
+      }
+    }
+  }
+}

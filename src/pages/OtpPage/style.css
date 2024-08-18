@@ -1,0 +1,113 @@
+.otp-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  font-size: 18px;
+  font-weight: 400;
+  .left {
+    flex-basis: 40%;
+  }
+  .right {
+    flex-basis: 60%;
+    padding: 20px 100px 20px 130px;
+  }
+  .otp-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    .otp-img {
+      width: 100%;
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .text-field {
+    .top-text {
+      display: flex;
+      padding: 0 3.5rem;
+      .head-text {
+        color: #0b1d35;
+        font-weight: 800;
+        font-size: 30px;
+        p {
+          background-image: linear-gradient(#78c147 0 0);
+          background-position: bottom left;
+          background-size: 25% 5px;
+          background-repeat: no-repeat;
+          padding-bottom: 5px;
+        }
+      }
+      .top-img {
+        align-self: center;
+        padding: 0 0 1rem 1rem;
+        width: 20%;
+        img {
+          width: 25%;
+        }
+      }
+    }
+    .sub-text {
+      padding: 0 3.5rem;
+      font-weight: 400;
+      font-size: 16px;
+      p {
+        span {
+          font-weight: 600;
+        }
+        margin: unset;
+      }
+      a {
+        padding-right: 20px;
+        font-weight: 600;
+        color: #0b1d35;
+        text-decoration: underline solid #0b1d35 1px;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  .otp-field {
+    padding: 0 3.5rem;
+    width: 432px;
+    height: 80px;
+  }
+
+  .el-button {
+    margin: 0 56px;
+    background: #a1d47e;
+    width: 75%;
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+  .overwrite-label-note {
+    padding: 12px 56px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    color: #6d7786;
+    a {
+      color: #6d7786;
+      font-weight: 600;
+    }
+  }
+  .bottom-container {
+    padding: 240px 0 0 3.5rem;
+    .bottom-btn {
+      a {
+        padding-right: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #0b1d35;
+        cursor: pointer;
+      }
+    }
+    p {
+      font-size: 10px;
+      font-weight: 400;
+      color: #0b1d35;
+    }
+  }
+}
