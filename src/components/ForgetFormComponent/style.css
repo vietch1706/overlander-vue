@@ -1,9 +1,9 @@
-.changepass-form-container {
+.forget-form-container {
   .el-form-item__content {
     line-height: unset;
   }
   padding: 0 3.5rem;
-  .overwrite-label-changepass {
+  .overwrite-label {
     font-weight: 600;
     font-size: 18px;
     line-height: 18px;
@@ -22,7 +22,7 @@
     color: #ee1b1b;
   }
 
-  .overwrite-form-item-changepass {
+  .overwrite-form-item {
     width: 100%;
     .el-input__inner,
     .el-textarea__inner {
@@ -51,7 +51,7 @@
     color: #6d7786;
   }
 
-  .overwrite-label-changepass {
+  .overwrite-label {
     a {
       color: #134b96;
       font-size: 18px;

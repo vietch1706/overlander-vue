@@ -17,7 +17,7 @@
           <div class="login-field">
             <p>
               New an account or
-              <router-link to="/login"> <a>Login</a></router-link>
+              <router-link :to="{ name: `loginPage` }"> Login</router-link>
             </p>
           </div>
         </div>

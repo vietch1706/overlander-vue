@@ -17,42 +17,42 @@
     </div>
     <div class="d-flex flex-column">
       <div class="py-2">
-        <el-button icon="bi bi-telephone-fill">
-          <router-link
-            :to="{
-              name: 'authenOnePage',
-              query: {
-                state: 'phone',
-              },
-            }"
-            >Verfiy with Phone No.</router-link
-          ></el-button
+        <router-link
+          :to="{
+            name: 'authenOnePage',
+            query: {
+              state: 'phone',
+            },
+          }"
+          ><el-button icon="bi bi-telephone-fill">
+            Verfiy with Phone No.</el-button
+          ></router-link
         >
       </div>
       <div class="py-2">
-        <el-button icon="bi bi-envelope-fill">
-          <router-link
-            :to="{
-              name: 'authenOnePage',
-              query: {
-                state: 'email',
-              },
-            }"
-            >Verfiy with Email</router-link
-          ></el-button
+        <router-link
+          :to="{
+            name: 'authenOnePage',
+            query: {
+              state: 'email',
+            },
+          }"
+          ><el-button icon="bi bi-envelope-fill">
+            Verfiy with Email</el-button
+          ></router-link
         >
       </div>
       <div class="py-2">
-        <el-button icon="bi bi-person-square">
-          <router-link
-            :to="{
-              name: 'authenOnePage',
-              query: {
-                state: 'member',
-              },
-            }"
-            >Verfiy with Member No.</router-link
-          ></el-button
+        <router-link
+          :to="{
+            name: 'authenOnePage',
+            query: {
+              state: 'member',
+            },
+          }"
+          ><el-button icon="bi bi-person-square">
+            Verfiy with Member No.</el-button
+          ></router-link
         >
       </div>
     </div>

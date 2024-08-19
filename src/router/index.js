@@ -54,10 +54,10 @@ const router = new VueRouter({
       name: "loginPage",
     },
     {
-      path: "forget-password",
-      component: () => import("@/pages/ForgetPage/ForgetPage.vue"),
-      meta: { text: "ForgetPage" },
-      name: "forgetPage",
+      path: "/forgot/:name",
+      component: () => import("@/pages/ForgotPage/ForgotPage.vue"),
+      meta: { text: "ForgotPage" },
+      name: "forgotPage",
     },
     {
       path: "/email-verification",
@@ -80,6 +80,13 @@ const router = new VueRouter({
         },
       ],
     },
+    {
+      path: "/404",
+      component: () => import("@/pages/404Page/404Page.vue"),
+      meta: { text: "404Page" },
+      name: "404Page",
+    },
+    { path: "*", redirect: "/404" },
   ],
 });
 

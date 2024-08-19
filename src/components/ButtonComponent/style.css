@@ -36,11 +36,9 @@
     font-weight: 600;
     display: flex;
     span {
-      a {
-        color: #4b9916;
-        padding: 0 150px;
-        margin: unset;
-      }
+      color: #4b9916;
+      padding: 0 150px;
+      margin: unset;
     }
   }
 }

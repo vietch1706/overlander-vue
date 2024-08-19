@@ -70,7 +70,15 @@
           >
           <template label="scope">
             <label class="overwrite-label-note">
-              <router-link to="/reset-password">Forgot Password?</router-link>
+              <router-link
+                :to="{
+                  name: `forgotPage`,
+                  params: {
+                    name: 'verify',
+                  },
+                }"
+                >Forgot Password?</router-link
+              >
             </label>
           </template>
         </div>

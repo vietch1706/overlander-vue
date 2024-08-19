@@ -1,45 +1,52 @@
 <template>
-  <div class="changepass-form-container">
+  <div class="forget-form-container">
     <el-form
-      :model="data.user"
+      :model="data.users"
       ref="ruleForm"
       label-width="120px"
       label-position="top"
     >
-      <div class="row row-cols-1">
+      <div class="row row-cols-1" :hidden="data.form.isHidden">
         <div class="col sp-2">
-          <el-form-item prop="new-password">
+          <el-form-item prop="user">
             <template label="scope">
-              <label class="overwrite-label-changepass">New Password </label>
+              <label class="overwrite-label">Email </label>
             </template>
             <el-input
-              v-model="data.user.new_password"
-              type="password"
+              v-model="data.users.user"
               autocomplete="off"
-              class="overwrite-form-item-changepass"
-              show-password
+              class="overwrite-form-item"
             ></el-input>
-            <template label="scope">
-              <label class="overwrite-label-note">
-                8 - 16 characters with numbers, upper and lower case
-              </label>
-            </template>
           </el-form-item>
         </div>
       </div>
-      <div class="row row-cols-1">
+      <div class="row row-cols-1" :hidden="!data.form.isHidden">
         <div class="col sp-2">
-          <el-form-item prop="confirm-password">
+          <el-form-item prop="password">
             <template label="scope">
-              <label class="overwrite-label-changepass"
-                >Confirm Password
-              </label>
+              <label class="overwrite-label">New Password </label>
             </template>
             <el-input
-              v-model="data.user.confirm_password"
+              v-model="data.users.password"
               type="password"
               autocomplete="off"
-              class="overwrite-form-item-changepass"
+              class="overwrite-form-item"
+              show-password
+            ></el-input>
+          </el-form-item>
+        </div>
+      </div>
+      <div class="row row-cols-1" :hidden="!data.form.isHidden">
+        <div class="col sp-2">
+          <el-form-item prop="password-confirmation">
+            <template label="scope">
+              <label class="overwrite-label">Confirm Password </label>
+            </template>
+            <el-input
+              v-model="data.users.password_confirmation"
+              type="password"
+              autocomplete="off"
+              class="overwrite-form-item"
               show-password
             ></el-input
             ><span class="error-message" v-if="error">{{
@@ -50,9 +57,9 @@
       </div>
       <div class="row row-cols-1 pt-4">
         <div class="col sp-2">
-          <el-button type="button" @click="submitForm('ruleForm')"
-            >Change Password</el-button
-          >
+          <el-button type="button" @click="submitForm('ruleForm')">{{
+            data.form.btn_name
+          }}</el-button>
         </div>
       </div>
     </el-form>

@@ -30,6 +30,14 @@ export default {
       }
     },
   },
+  beforeRouteEnter(to, from, next) {
+    switch (from.name) {
+      case "otpPage":
+      case "updatePage":
+      case "forgotPage":
+        next();
+    }
+  },
   async mounted() {
     this.getDataUser();
   },

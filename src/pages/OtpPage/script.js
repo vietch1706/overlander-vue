@@ -27,25 +27,26 @@ export default {
   },
   methods: {
     submitUser() {
-      axios
-        .post("/user/verify-code", this.data.users)
-        .then((result) => {
-          console.log("success");
-          this.$notify({
-            title: "Success",
-            message: result.data.data.message,
-            type: "success",
-          });
-          this.nextPage();
-        })
-        .catch((error) => {
-          console.log("error!");
-          this.$notify.error({
-            title: "Error",
-            message: error.response.data.message,
-          });
-          console.log(error);
-        });
+      this.nextPage();
+      // axios
+      //   .post("/user/verify-code", this.data.users)
+      //   .then((result) => {
+      //     console.log("success");
+      //     this.$notify({
+      //       title: "Success",
+      //       message: result.data.data.message,
+      //       type: "success",
+      //     });
+      //     this.nextPage();
+      //   })
+      //   .catch((error) => {
+      //     console.log("error!");
+      //     this.$notify.error({
+      //       title: "Error",
+      //       message: error.response.data.message,
+      //     });
+      //     console.log(error);
+      //   });
     },
     countdown() {
       if (this.started) {
@@ -89,6 +90,14 @@ export default {
           });
           this.$router.push({ name: "successPage" });
           break;
+        case "forgotPage":
+          this.$router.push({
+            name: "forgotPage",
+            params: {
+              name: "reset-password",
+            },
+          });
+          break;
         default:
           break;
       }
@@ -112,6 +121,13 @@ export default {
         next((vm) => {
           vm.previousPage = from.name;
           vm.data.users.user = vm.$store.getters.getExistsUser.answer2;
+        });
+        break;
+      case "forgotPage":
+        next((vm) => {
+          vm.previousPage = from.name;
+          vm.data.users.user = vm.$store.getters.getUser.user;
+          console.log(vm.data.users.user);
         });
         break;
       default:

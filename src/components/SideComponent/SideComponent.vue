@@ -11,10 +11,8 @@
           Already a member? Transfer your point and account <br />
           information now
         </p>
-        <el-button>
-          <router-link :to="{ name: 'existsMemberPage' }"
-            >Transfer Extisting Account</router-link
-          ></el-button
+        <router-link :to="{ name: 'existsMemberPage' }"
+          ><el-button> Transfer Extisting Account</el-button></router-link
         >
       </div>
       <div :hidden="!data.isHidden">

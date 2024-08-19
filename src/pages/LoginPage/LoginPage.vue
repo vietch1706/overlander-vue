@@ -17,8 +17,8 @@
           <div class="create-field">
             <p>
               Need a new account?
-              <router-link to="/register">
-                <a>Create an account</a></router-link
+              <router-link :to="{ name: `registerPage` }">
+                Create an account</router-link
               >
             </p>
           </div>
