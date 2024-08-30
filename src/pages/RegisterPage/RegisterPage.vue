@@ -21,7 +21,10 @@
             </p>
           </div>
         </div>
-        <form-component v-bind:data="data" v-bind:register="register" />
+        <form-component
+          v-bind:data="data"
+          v-bind:axios-function="axiosFunction"
+        />
       </div>
       <div class="bottom-container">
         <div class="bottom-btn">

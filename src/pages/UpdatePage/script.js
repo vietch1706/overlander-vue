@@ -11,13 +11,6 @@ export default {
       data: {
         country: [],
         interests: [],
-        error: false,
-        error_message: {
-          phone: "",
-          email: "",
-        },
-        isHidden: "",
-        hideAll: true,
         backgroundImageStyle: {
           backgroundImage: `url(${require("@/assets/UpdateComponent/side-image.png")})`,
         },
@@ -56,21 +49,21 @@ export default {
     };
   },
   methods: {
-    update() {
-      this.data.error = false;
-      this.data.error_message.phone = "";
-      this.data.error_message.email = "";
+    axiosFunction() {
       this.data.user.password_confirmation = this.data.user.password;
       this.data.user.phone_area_code = this.data.user.phone_area_code.replace(
         "+",
         ""
       );
+      console.log(this.data.user);
       axios
         .post("/user/update", this.data.user)
         .then((result) => {
+          console.log(result);
           console.log("success");
           this.data.user.password = "";
-          if (this.data.form.phone.isHidden === false) {
+          if (this.data.form.email.isHidden === false) {
+            this.$store.dispatch("user", this.data.user);
             this.sendCode();
           } else {
             this.$notify({
@@ -90,30 +83,11 @@ export default {
         })
         .catch((error) => {
           console.log("error!");
-          if (
-            error.response.data.message.search("email") > 0 &&
-            error.response.data.message.search("phone") < 0
-          ) {
-            this.data.error_message.email = error.response.data.message;
-            this.data.error = true;
-          } else if (
-            error.response.data.message.search("phone") > 0 &&
-            error.response.data.message.search("email") < 0
-          ) {
-            this.data.error_message.phone = error.response.data.message;
-            this.error = true;
-          } else {
-            this.data.error_message.phone =
-              error.response.data.message.split("|")[0];
-            this.data.error_message.email =
-              error.response.data.message.split("|")[1];
-            this.data.error = true;
-          }
+          console.log(error);
           this.$notify.error({
             title: "Error",
             message: error.response.data.message,
           });
-          console.log(error);
         });
     },
     sendCode() {
@@ -173,9 +147,10 @@ export default {
           vm.$store.getters.getExistsUser.question1 ===
           vm.questions.EMAIL_QUESTION
         ) {
-          vm.data.user.email = vm.$store.getters.getExistsUser.answer1;
           vm.data.form.email.isHidden = true;
         }
+        vm.data.user = vm.$store.getters.getUser;
+        vm.data.user.password = "";
       });
     } else if (from.name === "otpPage") {
       next((vm) => {
@@ -183,8 +158,9 @@ export default {
           vm.$store.getters.getExistsUser.question2 ===
           vm.questions.EMAIL_QUESTION
         ) {
-          vm.data.user.email = vm.$store.getters.getExistsUser.answer2;
           vm.data.form.email.isHidden = true;
+          vm.data.user = vm.$store.getters.getUser;
+          vm.data.user.password = "";
         }
       });
     }

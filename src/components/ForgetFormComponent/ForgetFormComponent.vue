@@ -1,7 +1,7 @@
 <template>
   <div class="forget-form-container">
     <el-form
-      :model="data.users"
+      :model="data.user"
       ref="ruleForm"
       label-width="120px"
       label-position="top"
@@ -13,7 +13,7 @@
               <label class="overwrite-label">Email </label>
             </template>
             <el-input
-              v-model="data.users.user"
+              v-model="data.user.user"
               autocomplete="off"
               class="overwrite-form-item"
             ></el-input>
@@ -27,7 +27,7 @@
               <label class="overwrite-label">New Password </label>
             </template>
             <el-input
-              v-model="data.users.password"
+              v-model="data.user.password"
               type="password"
               autocomplete="off"
               class="overwrite-form-item"
@@ -43,7 +43,7 @@
               <label class="overwrite-label">Confirm Password </label>
             </template>
             <el-input
-              v-model="data.users.password_confirmation"
+              v-model="data.user.password_confirmation"
               type="password"
               autocomplete="off"
               class="overwrite-form-item"

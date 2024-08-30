@@ -1,7 +1,8 @@
 <template>
   <div class="authen-form-container">
     <el-form
-      :model="data.user"
+      :model="user"
+      :rules="rules"
       ref="ruleForm"
       label-width="120px"
       label-position="top"
@@ -13,7 +14,7 @@
         <div class="col">
           <el-form-item prop="email">
             <el-input
-              v-model="data.user.answer1"
+              v-model="user.email"
               class="overwrite-form-item"
             ></el-input>
           </el-form-item>
@@ -41,11 +42,6 @@
                 <span style="float: right">{{ item.code }}</span>
               </el-option>
             </el-select>
-            <template label="scope">
-              <span class="error-message" v-if="data.error">{{
-                data.error_message.phone
-              }}</span>
-            </template>
           </el-form-item>
         </div>
         <div class="col-sm-8 pt-2">
@@ -65,8 +61,9 @@
         <div class="col">
           <el-form-item prop="member">
             <el-input
-              v-model="data.user.answer1"
+              v-model="user.member"
               class="overwrite-form-item"
+              type="number"
             ></el-input>
           </el-form-item>
         </div>

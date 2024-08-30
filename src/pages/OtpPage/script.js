@@ -14,7 +14,7 @@ export default {
         backgroundImageStyle: {
           backgroundImage: `url(${require("@/assets/UpdateComponent/side-image.png")})`,
         },
-        users: {
+        user: {
           user: "",
           code: "",
         },
@@ -27,26 +27,25 @@ export default {
   },
   methods: {
     submitUser() {
-      this.nextPage();
-      // axios
-      //   .post("/user/verify-code", this.data.users)
-      //   .then((result) => {
-      //     console.log("success");
-      //     this.$notify({
-      //       title: "Success",
-      //       message: result.data.data.message,
-      //       type: "success",
-      //     });
-      //     this.nextPage();
-      //   })
-      //   .catch((error) => {
-      //     console.log("error!");
-      //     this.$notify.error({
-      //       title: "Error",
-      //       message: error.response.data.message,
-      //     });
-      //     console.log(error);
-      //   });
+      axios
+        .post("/user/verify-code", this.data.user)
+        .then((result) => {
+          console.log("success");
+          this.$notify({
+            title: "Success",
+            message: result.data.data.message,
+            type: "success",
+          });
+          this.nextPage();
+        })
+        .catch((error) => {
+          console.log("error!");
+          this.$notify.error({
+            title: "Error",
+            message: error.response.data.message,
+          });
+          console.log(error);
+        });
     },
     countdown() {
       if (this.started) {
@@ -106,28 +105,29 @@ export default {
   beforeRouteEnter(to, from, next) {
     switch (from.name) {
       case "registerPage":
+      case "updatePage":
         next((vm) => {
           vm.previousPage = from.name;
-          vm.data.users.user = vm.$store.getters.getUser.email;
+          vm.data.user.user = vm.$store.getters.getUser.email;
         });
         break;
       case "authenOnePage":
         next((vm) => {
+          // vm.previousPage = "existsMemberPage";
           vm.previousPage = from.name;
-          vm.data.users.user = vm.$store.getters.getExistsUser.answer1;
+          vm.data.user.user = vm.$store.getters.getExistsUser.answer1;
         });
         break;
       case "authenTwoPage":
         next((vm) => {
           vm.previousPage = from.name;
-          vm.data.users.user = vm.$store.getters.getExistsUser.answer2;
+          vm.data.user.user = vm.$store.getters.getExistsUser.answer2;
         });
         break;
       case "forgotPage":
         next((vm) => {
           vm.previousPage = from.name;
-          vm.data.users.user = vm.$store.getters.getUser.user;
-          console.log(vm.data.users.user);
+          vm.data.user.user = vm.$store.getters.getUser.user;
         });
         break;
       default:

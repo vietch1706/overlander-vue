@@ -72,7 +72,7 @@ export default {
             type: "success",
           });
           this.$store.dispatch(`existsUser`, this.data.user);
-          if (this.data.user.question1 === "email") {
+          if (this.data.user.question1 == "email") {
             this.$router.push({
               name: "otpPage",
             });

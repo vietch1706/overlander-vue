@@ -26,7 +26,7 @@ export default {
         if (valid) {
           if (!this.data.phoneField) {
             this.data.user.answer2 =
-              this.user.phone_area_code + this.user.phone;
+              this.user.phone_area_code.replace("+", "") + this.user.phone;
           } else if (!this.data.datePicker) {
             this.data.user.answer2 = this.user.year + " " + this.user.month;
           }

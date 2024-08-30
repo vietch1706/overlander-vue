@@ -23,6 +23,7 @@ export default {
           email: {
             isHidden: false,
           },
+          error: false,
         },
         user: {
           first_name: "",
@@ -44,7 +45,7 @@ export default {
     };
   },
   methods: {
-    register() {
+    axiosFunction() {
       this.data.error = false;
       this.data.error_message.phone = "";
       this.data.error_message.email = "";
@@ -83,7 +84,7 @@ export default {
           }
           this.$notify.error({
             title: "Error",
-            // message: error.response.data.message,
+            message: error.response.data.message,
           });
           console.log(error);
         });

@@ -10,8 +10,7 @@ export default {
     return {
       data: {
         user: {
-          email: "",
-          member_no: "",
+          user: "",
           password: "",
         },
         backgroundImageStyle: {
@@ -23,7 +22,7 @@ export default {
   methods: {
     login() {
       axios
-        .post("/users/user/login", this.data.user)
+        .post("/user/login", this.data.user)
         .then((result) => {
           console.log(result);
           console.log("success");
@@ -37,6 +36,7 @@ export default {
           console.log("error!");
           this.$notify.error({
             title: "Error",
+            message: error.response.data.message,
           });
           console.log(error);
         });

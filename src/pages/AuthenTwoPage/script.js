@@ -58,29 +58,31 @@ export default {
         });
     },
     step2() {
+      console.log(this.data.user);
       axios
         .post(`existing-user/step-2`, this.data.user)
         .then((result) => {
-          console.log(result);
+          this.$store.dispatch("user", result.data.data.data);
           this.$notify({
             title: "Success",
             type: "success",
           });
           this.$store.dispatch(`existsUser`, this.data.user);
-          if (this.data.user.question2 === "email") {
+          if (this.data.user.question2 == this.data.questions.EMAIL_QUESTION) {
             this.$router.push({
               name: "otpPage",
             });
+          } else {
+            this.$router.push({
+              name: `updatePage`,
+            });
           }
-          this.$router.push({
-            name: `updatePage`,
-          });
         })
         .catch((error) => {
           console.log(error);
           this.$notify.error({
             title: "Error",
-            // message: error.response.data.message,
+            message: error.response.data.message,
           });
         });
     },

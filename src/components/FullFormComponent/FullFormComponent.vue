@@ -70,7 +70,7 @@
           </el-form-item>
         </div>
       </div>
-      <div class="row row-cols-1 disabled">
+      <div class="row row-cols-1">
         <div class="col sp-2">
           <el-form-item prop="password">
             <template label="scope">
@@ -84,7 +84,10 @@
               show-password
             ></el-input>
             <template label="scope">
-              <label class="overwrite-label-note">
+              <label
+                class="overwrite-label-note"
+                :class="{ error: data.form.error }"
+              >
                 8 - 16 characters with numbers, upper and lower case
               </label>
             </template>

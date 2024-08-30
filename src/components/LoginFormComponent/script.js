@@ -11,27 +11,13 @@ export default {
   },
 
   data() {
-    var validateUser = (rule, value, callback) => {
-      if (!value) {
-        return callback(
-          new Error("Please enter member number or email address")
-        );
-      }
-      callback();
-    };
     return {
       method: false,
       isHidden: false,
       rules: {
-        email: [
+        user: [
           {
-            validator: validateUser,
-            trigger: "blur",
-          },
-        ],
-        member_no: [
-          {
-            validator: validateUser,
+            message: "Please input user",
             trigger: "blur",
           },
         ],

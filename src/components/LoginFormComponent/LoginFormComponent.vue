@@ -32,7 +32,7 @@
         </div>
         <el-form-item prop="member_no" :hidden="isHidden">
           <el-input
-            v-model="data.user.member_no"
+            v-model="data.user.user"
             type="text"
             class="overwrite-form-item"
             required
@@ -40,7 +40,7 @@
         </el-form-item>
         <el-form-item prop="email" :hidden="!isHidden">
           <el-input
-            v-model="data.user.email"
+            v-model="data.user.user"
             type="text"
             class="overwrite-form-item"
             required

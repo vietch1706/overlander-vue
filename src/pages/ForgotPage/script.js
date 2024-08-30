@@ -1,3 +1,4 @@
+import axios from "axios";
 import SideComponent from "@/components/SideComponent/SideComponent.vue";
 import FormComponent from "@/components/ForgetFormComponent/ForgetFormComponent.vue";
 export default {
@@ -6,7 +7,7 @@ export default {
     return {
       data: {
         error_message: "",
-        users: {
+        user: {
           user: "",
           password: "",
           password_confirmation: "",
@@ -39,7 +40,8 @@ export default {
       }
     },
     verify() {
-      this.$store.dispatch("user", this.data.users);
+      this.$store.dispatch("user", this.data.user);
+      this.sendCode();
       this.$notify({
         title: "Success",
         message:
@@ -50,19 +52,54 @@ export default {
         name: `otpPage`,
       });
     },
+    sendCode() {
+      axios
+        .post("/user/send-verification-code", {
+          user: this.data.user.user,
+          method: "Forget Password",
+        })
+        .then((result) => {
+          this.$notify({
+            title: "Save Success",
+            message: result.data.data.message,
+            type: "success",
+          });
+          this.$router.push({
+            name: "otpPage",
+          });
+        })
+        .catch((error) => {
+          this.$notify.error({
+            title: "Error",
+          });
+          console.log(error);
+        });
+    },
     resetPassword() {
-      this.$store.dispatch("success", {
-        title: "Password Changed",
-        welcome: "Welcome back!" + " ",
-        message: "You have change the password successfully!",
-        button: "Go to Login",
-      });
-      this.$router.push({ name: "successPage" });
+      axios
+        .post("user/reset-password", this.data.user)
+        .then((result) => {
+          console.log(result);
+          this.$store.dispatch("success", {
+            title: "Password Changed",
+            welcome: "Welcome back!" + " ",
+            message: "You have change the password successfully!",
+            button: "Go to Login",
+          });
+          this.$router.push({ name: "successPage" });
+        })
+        .catch((error) => {
+          this.$notify.error({
+            title: "Error",
+          });
+          console.log(error);
+        });
     },
   },
   beforeRouteEnter(to, from, next) {
     if (to.params.name === "reset-password" && from.name === "otpPage") {
       next((vm) => {
+        vm.data.user = vm.$store.getters.getUser;
         vm.checkMethod(to.params.name);
       });
     } else if (to.params.name === "verify") {

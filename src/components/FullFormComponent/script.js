@@ -4,22 +4,21 @@ export default {
       type: Object,
       requried: true,
     },
-    register: {
+    axiosFunction: {
       type: Function,
       default: () => {},
     },
   },
   data() {
     var validatePassword = (rule, value, callback) => {
+      this.data.form.error = false;
       if (!value) {
         return callback(new Error("Password is required"));
       }
       const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
       if (!pattern.test(value)) {
-        this.isHidden = true;
-        return callback(
-          new Error("8 - 16 characters with numbers, upper and lower case")
-        );
+        this.data.form.error = true;
+        return callback();
       }
       callback();
     };
@@ -46,6 +45,13 @@ export default {
           {
             min: 3,
             message: "Too short last name",
+            trigger: "blur",
+          },
+        ],
+        phone_area_code: [
+          {
+            required: true,
+            message: "Please select country code",
             trigger: "blur",
           },
         ],
@@ -88,7 +94,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.register();
+          this.axiosFunction();
         } else {
           console.log("error submit!!");
           return false;

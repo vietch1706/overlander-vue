@@ -19,14 +19,12 @@
           <p>
             Please enter the OTP in the verification Email <br />
             we have sent to
-            <span> {{ this.data.users.user }}</span> <br />
+            <span> {{ this.data.user.user }}</span> <br />
           </p>
           <router-link
             :to="{
               name: previousPage,
-              query: {
-                state: 'email',
-              },
+              params: { name: 'verify' },
             }"
           >
             Re-enter your email address.
@@ -35,12 +33,12 @@
       </div>
       <div class="otp-field">
         <v-otp-input
-          v-model="data.users.code"
+          v-model="data.user.code"
           variant="underlined"
         ></v-otp-input>
       </div>
       <el-button
-        :disabled="data.users.code.length < 6"
+        :disabled="data.user.code.length < 6"
         type="button"
         @click="
           started = !started;

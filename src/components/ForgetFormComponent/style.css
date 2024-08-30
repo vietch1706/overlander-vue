@@ -14,14 +14,12 @@
       font-size: 20px;
     }
   }
-
   .error-message {
     font-weight: 600;
     font-size: 12px;
     line-height: 12px;
     color: #ee1b1b;
   }
-
   .overwrite-form-item {
     width: 100%;
     .el-input__inner,
@@ -43,14 +41,12 @@
       color: #3c4a5d;
     }
   }
-
   .overwrite-label-note {
     font-weight: 400;
     font-size: 12px;
     line-height: 12px;
     color: #6d7786;
   }
-
   .overwrite-label {
     a {
       color: #134b96;
@@ -61,7 +57,9 @@
       cursor: pointer;
     }
   }
-
+  .error {
+    color: #ee1b1b;
+  }
   .overwrite-form-item-password {
     width: 100%;
     .el-input__inner,
