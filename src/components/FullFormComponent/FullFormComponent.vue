@@ -88,7 +88,8 @@
                 class="overwrite-label-note"
                 :class="{ error: data.form.error }"
               >
-                8 - 16 characters with numbers, upper and lower case
+                8 - 16 characters with numbers, special character, upper and
+                lower case
               </label>
             </template>
           </el-form-item>

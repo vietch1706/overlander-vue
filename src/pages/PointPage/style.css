@@ -1,0 +1,29 @@
+.history-container {
+  margin: 0 auto;
+  padding: 60px 130px;
+  color: #0b1d35;
+  background-repeat: no-repeat;
+  background-color: #f2f2f2;
+  background-size: 100%;
+  height: 100%;
+  .el-breadcrumb {
+    .el-breadcrumb__item {
+      .el-breadcrumb__inner {
+        .overwrite-home-span {
+          font-size: 16px;
+          font-weight: 600;
+          color: #6d7786;
+        }
+        .overwrite-home-span:hover {
+          color: #4b9916;
+        }
+        .overwrite-current-span {
+          font-size: 16px;
+          font-weight: 600;
+          color: #4b9916;
+          cursor: context-menu;
+        }
+      }
+    }
+  }
+}

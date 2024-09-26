@@ -1,0 +1,51 @@
+.changepass-form-container {
+  .el-form-item__content {
+    line-height: unset;
+  }
+  .overwrite-label {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 18px;
+    color: #3c4a5d;
+  }
+
+  .overwrite-label-note {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 12px;
+    color: #6d7786;
+    a {
+      color: #6d7786;
+      font-weight: 400;
+      text-decoration: underline solid #6d7786 1.5px;
+    }
+  }
+
+  .error {
+    color: #ee1b1b;
+  }
+  .overwrite-form-item {
+    width: 100%;
+    .el-input__inner,
+    .el-textarea__inner {
+      padding: 0.5rem 0.75rem;
+      background: #e7e9eb;
+      gap: 12px;
+      align-self: stretch;
+      border-color: #ced2d7;
+      caret-color: #78c147;
+    }
+    .el-input__inner:focus,
+    .el-textarea__inner:focus {
+      border-bottom: #78c147 solid 4px;
+    }
+  }
+
+  .el-button {
+    background: #a1d47e;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+  }
+}

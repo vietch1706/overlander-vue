@@ -11,10 +11,7 @@
               <p>2-step Authentication (1/2)</p>
             </div>
             <div class="top-img">
-              <img
-                src="@/assets/ExistmemberComponent/image 23 (1).png"
-                alt=""
-              />
+              <img src="@/assets/image 23 (1).png" alt="" />
             </div>
           </div>
           <div class="note-text">

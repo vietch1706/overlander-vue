@@ -26,7 +26,7 @@
             </li>
           </ul>
         </div>
-        <form class="form-inline">
+        <form class="form-inline" :hidden="data.isHidden">
           <router-link :to="{ name: 'registerPage' }">
             <button class="btn btn-lg btn-signup" type="button">Sign Up</button>
           </router-link>
@@ -38,13 +38,30 @@
             <br />e-Shop
           </button>
         </form>
+        <form class="form-inline" :hidden="!data.isHidden">
+          <button
+            class="btn btn-lg btn-logout log-out"
+            type="button"
+            @click="logOut()"
+          >
+            Logout
+          </button>
+          <button class="btn btn-shop" type="button">
+            <img src="../../assets/Frame 2937.png" alt="" />
+            <br />e-Shop
+          </button>
+          <button class="btn btn-profile log-out" type="button">
+            <img src="../../assets/Frame 1268.png" alt="" />
+            <br />Profile
+          </button>
+        </form>
       </div>
     </nav>
   </header>
 </template>
 <script>
-// import Script from "./script.js";
-// export default Script;
+import Script from "./script.js";
+export default Script;
 </script>
 
 <style lang="scss">

@@ -2,30 +2,27 @@ export default {
   props: {
     data: {
       type: Object,
-      required: true,
+      requried: true,
     },
-    login: {
+    updateInformation: {
       type: Function,
       default: () => {},
     },
   },
-
   data() {
     return {
-      method: false,
-      isHidden: false,
       rules: {
-        user: [
+        district: [
           {
             required: true,
-            message: "Please input user",
+            message: "Please select district to receive booklet",
             trigger: "blur",
           },
         ],
-        password: [
+        address: [
           {
             required: true,
-            message: "Please input password",
+            message: "Please fill in detailed address to receive booklet",
             trigger: "blur",
           },
         ],
@@ -36,7 +33,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.login();
+          this.updateInformation();
         } else {
           console.log("error submit!!");
           return false;
@@ -45,10 +42,6 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
-    },
-    changeLoginMethod() {
-      this.method = !this.method;
-      this.isHidden = !this.isHidden;
     },
   },
 };

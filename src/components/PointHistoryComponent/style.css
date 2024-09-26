@@ -1,0 +1,123 @@
+.point-container {
+  padding: 0 16rem;
+  .header-field {
+    display: flex;
+    padding: 1rem 0;
+    .text-field {
+      color: #0b1d35;
+      font-weight: 800;
+      font-size: 40px;
+      p {
+        background-image: linear-gradient(#78c147 0 0);
+        background-position: bottom left;
+        background-size: 25% 5px;
+        background-repeat: no-repeat;
+        padding-bottom: 5px;
+      }
+    }
+    .img-field {
+      align-self: center;
+      padding: 0 0 1rem 1rem;
+      width: 20%;
+      img {
+        width: 20%;
+      }
+    }
+  }
+  .container {
+    padding-right: 0;
+    padding-left: 0;
+    .el-button {
+      font-size: 20px;
+      font-weight: 600;
+      width: 100%;
+      color: #3c4a5d;
+      background-color: #ced2d7;
+    }
+    .el-button:focus {
+      color: #fff;
+      background-color: #0b1d35;
+    }
+    .el-button:hover {
+      color: #fff;
+      background-color: #0b1d35;
+      transition: 0.5s;
+    }
+    .history-container {
+      background-color: #fff;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 8px 30px 0px;
+      .history-content {
+        display: flex;
+        justify-content: space-between;
+        .left {
+          flex-basis: 70%;
+        }
+        .right {
+          flex-basis: 10%;
+        }
+        .img-container {
+          margin-right: 2rem;
+          width: 100%;
+          img {
+            width: 100%;
+          }
+        }
+        .history-item {
+          .invoice-id {
+            p {
+              font-size: 14px;
+              font-weight: 400;
+              color: #6d7786;
+              margin-bottom: 0.5rem;
+            }
+          }
+          .purchase-reason {
+            p {
+              font-size: 20px;
+              font-weight: 600;
+              color: #0b1d35;
+              margin-bottom: 0;
+            }
+          }
+          .record-container {
+            display: flex;
+            color: #6d7786;
+            font-size: 16px;
+            .view-record {
+              a {
+                color: #6d7786;
+                font-weight: 600;
+                text-decoration: underline 2px;
+              }
+            }
+            .purchase-cost {
+              font-weight: 400;
+            }
+          }
+        }
+      }
+      .point-expired {
+        display: flex;
+        justify-content: space-between;
+        .point-wrapper {
+          p {
+            font-style: italic;
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0;
+          }
+        }
+        .expired-date {
+          margin: auto 0px;
+          p {
+            line-height: 14px;
+            color: #6d7786;
+            font-size: 14px;
+            font-weight: 400;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}

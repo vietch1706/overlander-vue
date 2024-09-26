@@ -81,6 +81,18 @@ const router = new VueRouter({
       ],
     },
     {
+      path: "/my-profile",
+      component: () => import("@/pages/ProfilePage/ProfilePage.vue"),
+      meta: { text: "ProfilePage" },
+      name: "profilePage",
+    },
+    {
+      path: "/point-transaction-history",
+      component: () => import("@/pages/PointPage/PointPage.vue"),
+      meta: { text: "PointPage" },
+      name: "pointPage",
+    },
+    {
       path: "/404",
       component: () => import("@/pages/404Page/404Page.vue"),
       meta: { text: "404Page" },

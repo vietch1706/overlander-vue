@@ -25,7 +25,11 @@ export default {
         .post("/user/login", this.data.user)
         .then((result) => {
           console.log(result);
-          console.log("success");
+          if (result.data.data.token) {
+            localStorage.setItem("token", result.data.data.token);
+          }
+          this.$store.dispatch("header", false);
+          this.$router.push({ name: "homePage" });
           this.$notify({
             title: "Login Success",
             message: result.data.message,
@@ -36,7 +40,7 @@ export default {
           console.log("error!");
           this.$notify.error({
             title: "Error",
-            message: error.response.data.message,
+            // message: error.response.data.message,
           });
           console.log(error);
         });

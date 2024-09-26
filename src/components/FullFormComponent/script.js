@@ -15,7 +15,8 @@ export default {
       if (!value) {
         return callback(new Error("Password is required"));
       }
-      const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+      const pattern =
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
       if (!pattern.test(value)) {
         this.data.form.error = true;
         return callback();
