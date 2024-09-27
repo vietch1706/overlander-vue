@@ -10,47 +10,80 @@
     </div>
     <div class="container">
       <div class="row align-items-center justify-content-between">
-        <div class="col"><el-button>All</el-button></div>
-        <div class="col"><el-button>Gain</el-button></div>
-        <div class="col"><el-button>Loss</el-button></div>
+        <div class="col"><el-button @click="showAll()">All</el-button></div>
+        <div class="col"><el-button @click="showGain()">Gain</el-button></div>
+        <div class="col"><el-button @click="showLoss()">Loss</el-button></div>
       </div>
     </div>
     <div class="container py-4">
-      <div class="row py-4">
+      <div class="row py-3" v-if="data.pointHistories.length == 0">
         <div class="col">
-          <div class="history-container p-3" :style="borderBottomStyle">
+          <div class="no-history">
+            <p>You have no loss point history</p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="row py-3"
+        v-for="(item, index) in visiblePointHistories"
+        :key="index"
+        :value="item"
+      >
+        <div class="col">
+          <div class="history-container p-3" :style="checkType(item.type)">
             <div class="history-content">
               <div class="history-item left">
-                <div class="invoice-id"><p>Invoice ID #46823763245</p></div>
-                <div class="purchase-reason">
-                  <p>Purchased in Kowloon Bay sStore</p>
+                <div class="invoice-id">
+                  <p>
+                    {{ item.invoice_no }}
+                  </p>
                 </div>
-                <div class="record-container">
+                <div class="purchase-reason">
+                  <p>{{ item.reason }}</p>
+                </div>
+                <div class="record-container" v-show="checkDetail(item.type)">
                   <div class="view-record">
                     <a href="">View Purchase Record</a>
                   </div>
                   &nbsp;
                   <div class="purchase-cost">
-                    <p>(HKD $2,455)</p>
+                    <p>{{ item.total_fprice }}</p>
                   </div>
                 </div>
               </div>
-              <div class="history-item right" :hidden="data.logoHidden">
+              <div class="history-item right" v-show="item.logoShow">
                 <div class="img-container">
-                  <img src="@/assets/Temporary.png" alt="" />
+                  <img :src="item.logo" alt="" />
                 </div>
               </div>
             </div>
             <div class="point-expired">
               <div class="point-wrapper">
-                <p :style="fontColorStyle">+7,102pt.</p>
+                <p>{{ item.amount }}</p>
               </div>
               <div class="expired-date">
-                <p>Expire at 12 Nov 2023</p>
+                <p>{{ item.date }}</p>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div
+        class="item-shown"
+        v-if="data.pointHistoryVisible < data.pointHistories.length"
+      >
+        <p>
+          Showing {{ data.pointHistoryVisible }} of
+          {{ data.pointHistories.length }}
+          Transactions
+        </p>
+      </div>
+      <div class="view-more-btn">
+        <el-button
+          @click="data.pointHistoryVisible += data.step"
+          v-if="data.pointHistoryVisible < data.pointHistories.length"
+          >View More</el-button
+        >
       </div>
     </div>
   </div>

@@ -12,8 +12,14 @@
         }}</span></el-breadcrumb-item
       >
     </el-breadcrumb>
-    <empty-component :hidden="isHidden" />
-    <point-history-component :hidden="!isHidden" v-bind:data="data" />
+    <empty-component v-show="!isHidden" />
+    <point-history-component
+      v-show="isHidden"
+      v-bind:data="data"
+      v-bind:show-all="showAll"
+      v-bind:show-gain="showGain"
+      v-bind:show-loss="showLoss"
+    />
   </div>
 </template>
 <script>

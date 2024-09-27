@@ -112,6 +112,15 @@ export default {
         });
     },
   },
+  async beforeRouteEnter(to, from, next) {
+    let token = localStorage.getItem("token");
+    if (!token) {
+      next((vm) => {
+        vm.$router.push({ name: "loginPage" });
+      });
+    }
+    next();
+  },
   async mounted() {
     this.getUser();
     this.getAllInterests();

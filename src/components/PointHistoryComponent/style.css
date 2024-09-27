@@ -25,6 +25,19 @@
     }
   }
   .container {
+    .no-history {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 25vh;
+      background-color: #fff;
+      color: #6d7786;
+      font-size: 24px;
+      font-weight: 600;
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+        rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    }
     padding-right: 0;
     padding-left: 0;
     .el-button {
@@ -117,6 +130,27 @@
             margin: 0;
           }
         }
+      }
+    }
+    .item-shown {
+      text-align: center;
+      font-size: 18px;
+      color: #0b1d35;
+      font-weight: 600;
+    }
+    .view-more-btn {
+      text-align: center;
+      font-size: 20px;
+      font-weight: 800;
+      .el-button {
+        width: 60%;
+        color: #4b9916;
+        background-color: #fff;
+        border: 3px solid #78c147;
+      }
+      .el-button::hover {
+        color: #3c4a5d;
+        transition: 0.5;
       }
     }
   }

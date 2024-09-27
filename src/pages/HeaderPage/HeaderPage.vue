@@ -1,5 +1,9 @@
 <template>
-  <header class="header-container" ref="header">
+  <header
+    class="header-container"
+    :class="scrolled ? 'scroll' : ''"
+    ref="header"
+  >
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid header-menu">
         <div class="navbar-brand logo-container">
@@ -26,7 +30,7 @@
             </li>
           </ul>
         </div>
-        <form class="form-inline" :hidden="data.isHidden">
+        <form class="form-inline" :hidden="isHidden">
           <router-link :to="{ name: 'registerPage' }">
             <button class="btn btn-lg btn-signup" type="button">Sign Up</button>
           </router-link>
@@ -38,7 +42,7 @@
             <br />e-Shop
           </button>
         </form>
-        <form class="form-inline" :hidden="!data.isHidden">
+        <form class="form-inline" :hidden="!isHidden">
           <button
             class="btn btn-lg btn-logout log-out"
             type="button"
@@ -50,10 +54,12 @@
             <img src="../../assets/Frame 2937.png" alt="" />
             <br />e-Shop
           </button>
-          <button class="btn btn-profile log-out" type="button">
-            <img src="../../assets/Frame 1268.png" alt="" />
-            <br />Profile
-          </button>
+          <router-link :to="{ name: 'profilePage' }">
+            <button class="btn btn-profile log-out" type="button">
+              <img src="../../assets/Frame 1268.png" alt="" />
+              <br />Profile
+            </button>
+          </router-link>
         </form>
       </div>
     </nav>
