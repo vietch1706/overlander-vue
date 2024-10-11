@@ -22,7 +22,10 @@
     line-height: 18px;
     color: #3c4a5d;
   }
-
+  .disabled-field {
+    pointer-events: none;
+    opacity: 0.4;
+  }
   .overwrite-label-note {
     font-weight: 400;
     font-size: 12px;

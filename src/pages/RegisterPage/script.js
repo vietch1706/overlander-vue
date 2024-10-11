@@ -12,6 +12,7 @@ export default {
         country: [],
         interests: [],
         error: false,
+        isFilled: true,
         error_message: {
           phone: "",
           email: "",

@@ -19,6 +19,7 @@
       v-bind:show-all="showAll"
       v-bind:show-gain="showGain"
       v-bind:show-loss="showLoss"
+      v-bind:load-more="loadMore"
     />
   </div>
 </template>

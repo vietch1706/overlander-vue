@@ -23,6 +23,18 @@ export default {
       }
       callback();
     };
+    var validateYear = (rule, value, callback) => {
+      if (!value && this.data.user.month) {
+        return callback(new Error("Please enter year"));
+      }
+      callback();
+    };
+    var validateMonth = (rule, value, callback) => {
+      if (!value && this.data.user.year) {
+        return callback(new Error("Please enter month"));
+      }
+      callback();
+    };
     return {
       rules: {
         first_name: [
@@ -71,6 +83,18 @@ export default {
         password: [
           {
             validator: validatePassword,
+            trigger: "blur",
+          },
+        ],
+        year: [
+          {
+            validator: validateYear,
+            trigger: "blur",
+          },
+        ],
+        month: [
+          {
+            validator: validateMonth,
             trigger: "blur",
           },
         ],

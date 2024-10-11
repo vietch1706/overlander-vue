@@ -8,7 +8,8 @@ export default new Vuex.Store({
     user: null,
     existsUser: null,
     success: null,
-    header: false,
+    isLogin: false,
+    needUpdateProfile: false,
   },
   getters: {
     getUser(state) {
@@ -20,8 +21,8 @@ export default new Vuex.Store({
     getExistsUser(state) {
       return state.existsUser;
     },
-    getHeader(state) {
-      return state.header;
+    getIsLogin(state) {
+      return state.isLogin;
     },
   },
   mutations: {
@@ -34,8 +35,8 @@ export default new Vuex.Store({
     success(state, success) {
       state.success = success;
     },
-    header(state, header) {
-      state.header = header;
+    isLogin(state, isLogin) {
+      state.isLogin = isLogin;
     },
   },
   actions: {
@@ -48,8 +49,8 @@ export default new Vuex.Store({
     success(context, success) {
       context.commit("success", success);
     },
-    header(context, header) {
-      context.commit("header", header);
+    isLogin(context, isLogin) {
+      context.commit("isLogin", isLogin);
     },
   },
   modules: {},

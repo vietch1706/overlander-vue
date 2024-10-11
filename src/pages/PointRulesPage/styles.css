@@ -1,0 +1,119 @@
+.pointrules-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 60px 130px;
+  color: #0b1d35;
+  background-repeat: no-repeat;
+  background-color: #f2f2f2;
+  background-size: 100%;
+  height: 100%;
+  .el-breadcrumb {
+    .el-breadcrumb__item {
+      .el-breadcrumb__inner {
+        .overwrite-home-span {
+          font-size: 16px;
+          font-weight: 600;
+          color: #6d7786;
+        }
+        .overwrite-home-span:hover {
+          color: #4b9916;
+        }
+        .overwrite-current-span {
+          font-size: 16px;
+          font-weight: 600;
+          color: #4b9916;
+          cursor: context-menu;
+        }
+      }
+    }
+  }
+  .pointrules-wrapper {
+    display: flex;
+    .left {
+      flex-basis: 50%;
+    }
+    .right {
+      flex-basis: 50%;
+    }
+    .pointrules-item {
+      .header-text {
+        font-weight: 800;
+        font-size: 56px;
+        p {
+          background-image: linear-gradient(#78c147 0 0);
+          background-position: bottom left;
+          background-size: 18% 5px;
+          background-repeat: no-repeat;
+          padding-bottom: 5px;
+        }
+      }
+      .content-text {
+        p {
+          font-size: 18px;
+          font-weight: 400;
+          line-height: 22px;
+        }
+      }
+      .point-tc-header {
+        p {
+          font-size: 24px;
+          font-weight: 600;
+          line-height: 26px;
+        }
+      }
+      .view-button {
+        padding-top: 10px;
+        padding-bottom: 40px;
+        a {
+          font-size: 20px;
+          color: #0b1d35;
+          font-weight: 600;
+          text-decoration: underline solid #0b1d35 2px;
+        }
+      }
+      .point-tc-container {
+        color: #0b1d35;
+      }
+      .membership-container {
+        display: flex;
+        justify-content: space-between;
+        .left {
+          flex-basis: 30%;
+        }
+        .right {
+          flex-basis: 70%;
+        }
+        .membership-item {
+          .img-container {
+            width: 100%;
+            img {
+              width: 100%;
+            }
+          }
+          .membership-type {
+            font-size: 40px;
+            font-weight: 600;
+          }
+          .membership-valid {
+            font-size: 20px;
+            font-weight: 400;
+            p {
+              color: #6d7786;
+              span {
+                font-weight: 600;
+                color: #134b96;
+              }
+            }
+          }
+          .membership-points {
+            font-size: 24px;
+            font-weight: 800;
+            p {
+              color: #4b9916;
+            }
+          }
+        }
+      }
+    }
+  }
+}

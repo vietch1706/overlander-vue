@@ -30,5 +30,5 @@ import Script from "./script.js";
 export default Script;
 </script>
 <style lang="scss" scoped>
-@import url("./styles.css");
+@import url("./style.css");
 </style>

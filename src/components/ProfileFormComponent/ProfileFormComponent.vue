@@ -31,7 +31,24 @@
           </el-form-item>
         </div>
       </div>
-      <div class="row">
+      <div
+        class="row row-cols-1"
+        v-show="data.isFilled.gender"
+        :class="isDisabled()"
+      >
+        <div class="col">
+          <el-form-item prop="country">
+            <template label="scope">
+              <label class="overwrite-label"> Gender </label>
+            </template>
+            <el-input
+              v-model="data.user.gender"
+              class="overwrite-form-item"
+            ></el-input>
+          </el-form-item>
+        </div>
+      </div>
+      <div class="row" v-show="!data.isFilled.gender">
         <template label="scope">
           <label class="overwrite-label">Gender</label>
         </template>
@@ -58,7 +75,7 @@
           </el-form-item>
         </div>
       </div>
-      <div class="row">
+      <div class="row" :class="isDisabled()">
         <template label="scope">
           <label class="overwrite-label">Birth Date</label>
         </template>
@@ -113,7 +130,7 @@
                 :value="item.code"
               >
                 <span :class="item.image"> </span>
-                <span>{{ " " + item.country }} </span>
+                <span>{{ item.country }} </span>
                 <span style="float: right">{{ item.code }}</span>
               </el-option>
             </el-select>

@@ -30,6 +30,9 @@ export default {
     };
   },
   methods: {
+    isDisabled() {
+      if (this.data.isFilled.birthdate) return "disabled-field";
+    },
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {

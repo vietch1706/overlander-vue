@@ -10,6 +10,8 @@ export default {
     },
   },
   data() {
+    // current password != new password
+    // current password format
     var validatePasswordConfirmation = (rule, value, callback) => {
       if (value !== this.dataPass.new_password) {
         return callback(new Error("Password do not match"));
@@ -51,6 +53,8 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.changePassword();
+          this.resetForm(formName);
+          // reset form after successful
         } else {
           console.log("error submit!!");
           return false;

@@ -14,7 +14,13 @@ export default {
       profileImageStyle: {
         backgroundImage: `url(${require("@/assets/ProfileComponent/Frame2861.png")})`,
       },
+      GENDER_MALE: 0,
+      GENDER_FEMALE: 1,
       data: {
+        isFilled: {
+          gender: false,
+          birthdate: false,
+        },
         country: [],
         user: {
           first_name: "",
@@ -26,6 +32,7 @@ export default {
           year: "",
           month: "",
           gender: "",
+          upgrade_point: "",
           membership_tier: [],
           join_date: "",
           validity_date: "",
@@ -45,7 +52,7 @@ export default {
   methods: {
     updateInformation() {
       axios
-        .post("/user/update-information", this.data.user)
+        .post("/user/update", this.data.user)
         .then((result) => {
           console.log(result);
           this.$notify({
@@ -54,13 +61,12 @@ export default {
             type: "success",
           });
         })
-        .then((error) => {
+        .catch((error) => {
           console.log(error);
         });
     },
     changePassword() {
       this.dataPass.user = this.data.user.email;
-      console.log(this.dataPass);
       axios
         .post("/user/change-password", this.dataPass)
         .then((result) => {
@@ -71,8 +77,13 @@ export default {
             type: "success",
           });
         })
-        .then((error) => {
-          console.log(error);
+        .catch((error) => {
+          console.log(error.response.data.message);
+          this.$notify({
+            title: "Error",
+            message: error.response.data.message,
+            type: "error",
+          });
         });
     },
     getUser() {
@@ -80,11 +91,23 @@ export default {
         .get("/user/me", localStorage.getItem("token"))
         .then((result) => {
           this.data.user = result.data.data;
+          if (this.data.user.gender != "") {
+            this.data.isFilled.gender = true;
+          }
+          if (this.data.user.year != "") {
+            this.data.isFilled.birthdate = true;
+          }
+          if (this.data.user.gender == this.GENDER_MALE) {
+            this.data.user.gender = "Male";
+          } else {
+            this.data.user.gender = "Female";
+          }
         })
         .catch((error) => {
           console.log(error);
         });
     },
+    checkFilled() {},
     getAllPhoneCodes() {
       axios
         .get("general/country/get")
@@ -122,8 +145,9 @@ export default {
     next();
   },
   async mounted() {
-    this.getUser();
-    this.getAllInterests();
-    this.getAllPhoneCodes();
+    await this.getUser();
+    await this.getAllInterests();
+    await this.checkFilled();
+    await this.getAllPhoneCodes();
   },
 };

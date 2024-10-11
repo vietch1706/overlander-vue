@@ -57,7 +57,7 @@ export default {
       );
       console.log(this.data.user);
       axios
-        .post("/user/update", this.data.user)
+        .post("/existing-user/update", this.data.user)
         .then((result) => {
           console.log(result);
           console.log("success");

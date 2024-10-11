@@ -1,0 +1,98 @@
+.logouthome-container {
+  display: flex;
+  width: 100%;
+  .left {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-basis: 40%;
+  }
+  .right {
+    flex-basis: 60%;
+  }
+  .logouthome-item {
+    .header-container {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 620px;
+      padding: 150px 100px;
+      color: #fff;
+      .welcome-container {
+        display: flex;
+        .text-container {
+          p {
+            font-size: 26px;
+            font-weight: 600;
+            line-height: 26px;
+            margin: 0px;
+          }
+        }
+        .img-container {
+          width: 15%;
+          img {
+            width: 20%;
+          }
+        }
+      }
+      .header-wrapper {
+        padding: 20px 0;
+        .header-text {
+          p {
+            font-size: 60px;
+            font-weight: 800;
+            line-height: 60px;
+            color: #78c147;
+          }
+        }
+        .header-note {
+          p {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 20px;
+          }
+        }
+      }
+      .header-btn {
+        text-align: center;
+        a {
+          color: #ffffff;
+          font-size: 18px;
+          line-height: 20px;
+          text-decoration: underline;
+          .el-button {
+            padding: 15px;
+            width: 100%;
+            font-size: 20px;
+            font-weight: 800;
+            background: #a1d47e;
+            border: none;
+            width: 100%;
+          }
+        }
+      }
+    }
+    .bottom-btn {
+      padding: 20px 100px;
+      background-color: #0b1d35;
+      .col {
+        display: flex;
+        color: #fff;
+        align-items: center;
+        .text-container {
+          p {
+            font-size: 22px;
+            font-weight: 600;
+            margin: 0px;
+          }
+        }
+        .img-container {
+          width: 15%;
+          img {
+            width: 80%;
+          }
+        }
+      }
+    }
+  }
+}

@@ -25,7 +25,7 @@
       </div>
       <div
         class="row py-3"
-        v-for="(item, index) in visiblePointHistories"
+        v-for="(item, index) in data.pointHistories"
         :key="index"
         :value="item"
       >
@@ -43,7 +43,7 @@
                 </div>
                 <div class="record-container" v-show="checkDetail(item.type)">
                   <div class="view-record">
-                    <a href="">View Purchase Record</a>
+                    <a @click="viewRecord(item)">View Purchase Record</a>
                   </div>
                   &nbsp;
                   <div class="purchase-cost">
@@ -61,30 +61,79 @@
               <div class="point-wrapper">
                 <p>{{ item.amount }}</p>
               </div>
-              <div class="expired-date">
-                <p>{{ item.date }}</p>
+              <div class="history-date">
+                <p>{{ item.history_date }}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div
-        class="item-shown"
-        v-if="data.pointHistoryVisible < data.pointHistories.length"
-      >
+      <div class="item-shown text-center" v-show="data.moreExist">
         <p>
-          Showing {{ data.pointHistoryVisible }} of
-          {{ data.pointHistories.length }}
+          Showing {{ data.currentShowRecords }} of
+          {{ data.totalRecords }}
           Transactions
         </p>
       </div>
-      <div class="view-more-btn">
-        <el-button
-          @click="data.pointHistoryVisible += data.step"
-          v-if="data.pointHistoryVisible < data.pointHistories.length"
+      <div class="view-more-btn text-center">
+        <el-button @click="loadMore()" v-show="data.moreExist"
           >View More</el-button
         >
       </div>
+      <el-dialog title="Purchase Record" :visible.sync="dialogVisible">
+        <div class="record-note">
+          <p>
+            {{ currentItem.reason }} at
+            {{ currentItem.transaction_date }}
+          </p>
+        </div>
+        <div
+          class="row py-3"
+          v-for="(item, index) in transactionDetail"
+          :key="index"
+          :value="item"
+        >
+          <div class="col">
+            <div class="detail-container">
+              <div class="detail-item left">
+                <div class="plc-description">
+                  <p>{{ item.plc }} {{ item.description }}</p>
+                </div>
+                <div class="price-container">
+                  <div class="price-amount">
+                    <p>{{ item.price }}</p>
+                  </div>
+                  <div class="discount-amount">
+                    <p>{{ item.discount }}</p>
+                  </div>
+                </div>
+                <div class="price-container">
+                  <div class="fprice-amount">
+                    <p>
+                      {{ item.fprice }}
+                    </p>
+                  </div>
+                  &nbsp;
+                  <div class="quantity-amount">
+                    <p>{{ item.quantity }}</p>
+                  </div>
+                </div>
+                <div class="campaign-multiplier">
+                  <p>{{ item.multiplier }}</p>
+                </div>
+                <div class="transaction-campaign">
+                  {{ item.transaction_campaign }}
+                </div>
+              </div>
+              <div class="detail-item right">
+                <div class="point-amount">
+                  {{ item.point }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </el-dialog>
     </div>
   </div>
 </template>

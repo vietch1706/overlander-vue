@@ -8,6 +8,7 @@ const router = new VueRouter({
   routes: [
     {
       path: "/",
+      component: () => import("@/pages/HomePage/HomePage.vue"),
       meta: { text: "HomePage" },
       name: "homePage",
     },
@@ -35,6 +36,7 @@ const router = new VueRouter({
       meta: { text: "AuthenTwoPage" },
       name: "authenTwoPage",
     },
+
     {
       path: "/successful",
       component: () => import("@/pages/SuccessPage/SuccessPage.vue"),
@@ -91,6 +93,12 @@ const router = new VueRouter({
       component: () => import("@/pages/PointPage/PointPage.vue"),
       meta: { text: "PointPage" },
       name: "pointPage",
+    },
+    {
+      path: "/point-rules",
+      component: () => import("@/pages/PointRulesPage/PointRulesPage.vue"),
+      meta: { text: "PointRulesPage" },
+      name: "pointRulesPage",
     },
     {
       path: "/404",

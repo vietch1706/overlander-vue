@@ -24,17 +24,17 @@ export default {
       axios
         .post("/user/login", this.data.user)
         .then((result) => {
-          console.log(result);
           if (result.data.data.token) {
             localStorage.setItem("token", result.data.data.token);
           }
-          this.$store.dispatch("header", false);
-          this.$router.push({ name: "homePage" });
           this.$notify({
             title: "Login Success",
             message: result.data.message,
             type: "success",
           });
+          this.$store.dispatch("isLogin", true);
+          this.$store.dispatch("user", result.data.data.user);
+          this.$router.push({ name: "homePage" });
         })
         .catch((error) => {
           console.log("error!");
@@ -45,5 +45,13 @@ export default {
           console.log(error);
         });
     },
+  },
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      console.log(vm.$store.getters.getIsLogin);
+      if (vm.$store.getters.getIsLogin) {
+        vm.$router.push({ name: "homePage" });
+      }
+    });
   },
 };
